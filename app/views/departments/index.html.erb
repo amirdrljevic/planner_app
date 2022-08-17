@@ -2,20 +2,27 @@
 
 <h1>Departments</h1>
 
-<div id="departments">
-  <table>
-    <tr>
-      <th>Department</th>
-      <th>xxx</th>
-    </tr>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Department name</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @departments.each do |department| %>
+            <tr>
+              <td><%= department.id %></td>
+              <td><%= department.department_name %></td>
+              <td><%= link_to "Show", department %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
 
-    <% @departments.each do |department| %>
-      <tr>
-        <td><%= department.department_name %></td>
-        <td><%= link_to "Show this department", department %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
 
-<%= link_to "New department", new_department_path %>
+
+<%= link_to "New department", new_department_path, class: 'btn btn-primary' %>
