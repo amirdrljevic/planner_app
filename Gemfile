@@ -10,7 +10,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem 'tzinfo-data', '~> 1.2022', '>= 1.2022.3'
 gem 'pg', '~> 1.4', '>= 1.4.2'
 
 gem "bootsnap", require: false
