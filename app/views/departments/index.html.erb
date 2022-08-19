@@ -8,7 +8,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Department name</th>
-              <th scope="col">Action</th>
+              <th scope="col" colspan="3">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -17,6 +17,11 @@
               <td><%= department.id %></td>
               <td><%= department.department_name %></td>
               <td><%= link_to "Show", department %></td>
+              <td><%= link_to "Edit", edit_department_path(department.id) %></td>
+              <td><%= link_to "Delete", department, method: :delete, data: {turbo_method: :delete, 
+                                                                            turbo_confirm: 'Are you sure?'}  %></td>
+
+                  
             </tr>
           <% end %>
           </tbody>

@@ -1,10 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @company %>
+<div class="card">
+  <h5 class="card-header">Company</h5>
+  <div class="card-body">
+    <p class="card-text">Name: <%= @company.company_name %></p>
+    <p class="card-text">Street address: <%= @company.street_address %></p>
+    <p class="card-text">Postal code: <%= @company.postal_code %></p>
+    <p class="card-text">City: <%= @company.city %></p>
+    <p class="card-text">Country: <%= @company.country %></p>
 
-<div>
-  <%= link_to "Edit this company", edit_company_path(@company) %> |
-  <%= link_to "Back to companies", companies_path %>
 
-  <%= button_to "Destroy this company", @company, method: :delete %>
+    <%= link_to "Edit", edit_company_path(@company), class: "btn btn-secondary" %> 
+    <%= link_to "Back to companies", companies_path, class: "btn btn-secondary"  %>
+    <%= link_to "Delete", @company, method: :delete, data: {turbo_method: :delete, 
+                                                              turbo_confirm: 'Are you sure?'}, class:"btn btn-danger"  %>
+    <%# <%= button_to "Delete", @company, method: :delete,  
+                                                          form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger"  %> 
+  </div>
 </div>
