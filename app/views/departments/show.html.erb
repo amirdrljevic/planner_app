@@ -1,10 +1,14 @@
 <p style="color: green"><%= notice %></p>
+<div class="card">
+  <h5 class="card-header">Department</h5>
+  <div class="card-body">
+    <p class="card-text">Name: <%= @department.department_name %></p>
 
-<%= render @department %>
-
-<div>
-  <%= link_to "Edit this department", edit_department_path(@department) %> |
-  <%= link_to "Back to departments", departments_path %>
-
-  <%= button_to "Destroy this department", @department, method: :delete %>
+    <%= link_to "Edit", edit_department_path(@department), class: "btn btn-secondary" %> 
+    <%= link_to "Back to departments", departments_path, class: "btn btn-secondary"  %>
+    <%= link_to "Delete", @department, method: :delete, data: {turbo_method: :delete, 
+                                                              turbo_confirm: 'Are you sure?'}, class:"btn btn-danger"  %>
+    <%# <%= button_to "Delete", @department, method: :delete,  
+                                                          form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger"  %> 
+  </div>
 </div>
