@@ -1,10 +1,18 @@
-<h1>Editing department</h1>
-
-<%= render "form", department: @department %>
-
-<br>
-
-<div>
-  <%= link_to "Show this department", @department %> |
-  <%= link_to "Back to departments", departments_path %>
+<div class="card">
+  <h5 class="card-header">Edit department</h5>
+  <div class="card-body">
+    <%= form_with(model: @department , local: true) do |f| %>
+      <div class="field">
+        <%= f.label :department_name, "Department name:" %>
+        <%= f.text_field :department_name %>
+      </div>
+      <br>
+      <%= f.submit "Save changes", class: "btn btn-outline-primary btn-sm" %>
+    <% end %>
+    <br>
+  </div>
+  <div class="card-footer text-muted">
+    <%= link_to "Show this department", @department,  class: "btn btn-outline-secondary btn-sm" %>
+    <%= link_to "Back to departments", departments_path, class: "btn btn-outline-secondary btn-sm"  %>
+  </div>
 </div>
