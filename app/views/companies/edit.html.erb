@@ -1,10 +1,68 @@
-<h1>Editing company</h1>
+<%= notice %>
+<div class="card">
+  <h5 class="card-header">Edit company</h5>
+  <div class="card-body">
+    <%= form_with(model: @company , local: true) do |f| %>
 
-<%= render "form", company: @company %>
+      <table>
+        <tr>
+          <td> 
+            <%= f.label :company_name, "Company name:" %>       
+          </td>
+          <td>
+            <%= f.text_field :company_name, placeholder: "Company name" %>
+          </td>          
+        </tr>
 
-<br>
+        <tr>
+          <td>   
+            <%= f.label :street_address, "Street address:" %>     
+          </td>
+          <td>
+            <%= f.text_field :street_address %>
+          </td>          
+        </tr>
 
-<div>
-  <%= link_to "Show this company", @company %> |
-  <%= link_to "Back to companies", companies_path %>
+        <tr>
+          <td>     
+            <%= f.label :postal_code, "Postal code:" %>   
+          </td>
+          <td>
+            <%= f.text_field :postal_code %>
+          </td>          
+        </tr>
+
+        <tr>
+          <td>  
+            <%= f.label :city, "City:" %>      
+          </td>
+          <td>
+            <%= f.text_field :city %>
+          </td>          
+        </tr>                
+
+        <tr>
+          <td>   
+            <%= f.label :country, "Country :" %>     
+          </td>
+          <td>
+            <%= f.text_field :country %>
+          </td>          
+        </tr>                
+
+        <tr>
+          <td>        
+          </td>
+          <td>
+            <%= f.submit "Save changes", class: "btn btn-outline-primary btn-sm" %>
+          </td>          
+        </tr>                
+      </table>        
+    <% end %>
+    <br>
+  </div>
+  <div class="card-footer text-muted">
+    <%= link_to "Show this company", @company, class: "btn btn-outline-secondary btn-sm" %>
+    <%= link_to "Back to companies", companies_path, class: "btn btn-outline-secondary btn-sm"  %>
+  </div>
 </div>
