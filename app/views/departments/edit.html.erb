@@ -1,13 +1,28 @@
+<%= notice %>
 <div class="card">
   <h5 class="card-header">Edit department</h5>
   <div class="card-body">
     <%= form_with(model: @department , local: true) do |f| %>
-      <div class="field">
-        <%= f.label :department_name, "Department name:" %>
-        <%= f.text_field :department_name %>
-      </div>
-      <br>
-      <%= f.submit "Save changes", class: "btn btn-outline-primary btn-sm" %>
+    
+      <table>
+        <tr>
+          <td>
+            <%= f.label :department_name, "Department name:" %>
+          </td>
+          <td>
+            <%= f.text_field :department_name %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>        
+          </td>
+          <td>
+            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+          </td>          
+        </tr>   
+
+      </table>
     <% end %>
     <br>
   </div>

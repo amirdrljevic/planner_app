@@ -1,10 +1,32 @@
-<h1>Editing role</h1>
+<%= notice %>
+<div class="card">
+  <h5 class="card-header">Edit role</h5>
+  <div class="card-body">
+    <%= form_with(model: @role , local: true) do |f| %>
+    
+      <table>
+        <tr>
+          <td>
+            <%= f.label :role_name, "Role name:" %>
+          </td>
+          <td>
+            <%= f.text_field :role_name %>
+          </td>
+        </tr>
+        <tr>
+          <td>        
+          </td>
+          <td>
+            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+          </td>          
+        </tr>   
 
-<%= render "form", role: @role %>
-
-<br>
-
-<div>
-  <%= link_to "Show this role", @role %> |
-  <%= link_to "Back to roles", roles_path %>
+      </table>
+    <% end %>
+    <br>
+  </div>
+  <div class="card-footer text-muted">
+    <%= link_to "Show roles", @role,  class: "btn btn-outline-secondary btn-sm" %>
+    <%= link_to "Back to roles", roles_path, class: "btn btn-outline-secondary btn-sm"  %>
+  </div>
 </div>

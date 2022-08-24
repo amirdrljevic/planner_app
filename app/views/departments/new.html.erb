@@ -1,9 +1,32 @@
-<h1>New department</h1>
+<%= notice %>
+<div class="card">
+  <h5 class="card-header">New department</h5>
+  <div class="card-body">
+    <%= form_with(model: @department , local: true) do |f| %>
+    
+      <table>
+        <tr>
+          <td>
+            <%= f.label :department_name, "Department name:" %>
+          </td>
+          <td>
+            <%= f.text_field :department_name, placeholder:"department example" %>
+          </td>
+        </tr>
 
-<%= render "form", department: @department %>
+        <tr>
+          <td>        
+          </td>
+          <td>
+            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+          </td>          
+        </tr>   
 
-<br>
-
-<div>
-  <%= link_to "Back to departments", departments_path %>
+      </table>
+    <% end %>
+    <br>
+  </div>
+  <div class="card-footer text-muted">
+    <%= link_to "Back to departments", departments_path, class: "btn btn-outline-secondary btn-sm"  %>
+  </div>
 </div>
