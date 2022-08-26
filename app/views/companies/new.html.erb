@@ -3,7 +3,7 @@
   <h5 class="card-header">New company</h5>
   <div class="card-body">
     <%= form_with(model: @company , local: true) do |f| %>
-
+      <%= render "home/error_msgs", model_name: @company %>
       <table>
         <tr>
           <td> 

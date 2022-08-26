@@ -3,7 +3,7 @@
   <h5 class="card-header">New role</h5>
   <div class="card-body">
     <%= form_with(model: @role , local: true) do |f| %>
-    
+      <%= render "home/error_msgs", model_name: @role %>
       <table>
         <tr>
           <td>
