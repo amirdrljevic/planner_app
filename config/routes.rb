@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'home/index'
   resources :companies
   resources :roles
-  root 'departments#index'
+  root 'home#index'
   resources :departments
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

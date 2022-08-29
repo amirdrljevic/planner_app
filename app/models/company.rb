@@ -5,6 +5,9 @@ class Company < ApplicationRecord
 
 
   validates :postal_code, numericality: true
-  #validates :postal_code, numericality: { only_integer: true }
+
+  has_many :users
+  # TODO: if user deletes a company, it shouldn't be available if that company_id is being used in users table
+  # a message should pop up
 
 end
