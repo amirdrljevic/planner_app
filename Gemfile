@@ -16,6 +16,7 @@ gem 'byebug', '~> 11.1', '>= 11.1.3'  #todo: think about removing this one
 gem 'faker', '~> 2.22'
 
 gem "bootsnap", require: false
+gem 'devise', '~> 4.8', '>= 4.8.1'
 
 group :development, :test do
   #gem "debug", platforms: %i[ mri mingw x64_mingw ]
