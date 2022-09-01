@@ -7,4 +7,6 @@ class User < ApplicationRecord
   belongs_to :department
   belongs_to :role
   belongs_to :company      
+
+  validates :first_name, presence: true, length: { minimum: 3 }
 end
