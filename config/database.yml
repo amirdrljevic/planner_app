@@ -3,8 +3,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   #Added username and password, without information couldnt run "rails s"
-  # username: postgres
-  # password: 123
+  #username: postgres
+  #password: 123
 
 development:
   <<: *default

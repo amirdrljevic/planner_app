@@ -1,46 +1,117 @@
 <div class="main-signin text-center">
-    <div class="form-signin w-100 m-auto">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="form-signin w-200 m-auto">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
         <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+        <form class="needs-validation" novalidate>
+          <div class="row g-3">
 
-        <div class="form-floating mb-3">
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control", id: "floatinginput",  placeholder: "First name" %>
-          <label for="floatingInput">First name</label>
-        </div>
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">First name</label>
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.text_field :first_name, autofocus: true, autocomplete: "last_name", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Last name</label>
+              </div>
+            </div>
 
-    <div class="form-floating mb-3">
-  
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Email address</label>
+              </div>
+            </div>
 
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.date_field :date_of_birth, autofocus: true, autocomplete: "date_of_birth", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Date of birth</label>
+              </div>
+            </div>
 
-        <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { :class => "form-select", :id => "floatinginput" } %>
-        <label for="floatingInput">Department</label>
-    </div>  
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { :class => "form-select", :id => "floatinginput", placeholder: "a" } %>
+                <label for="floatingInput">Company</label>
+              </div>  
+            </div>
 
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { :class => "form-select", :id => "floatinginput", placeholder: "a" } %>
+                <label for="floatingInput">Department</label>
+              </div>  
+            </div>
 
-        <div class="form-floating mb-3">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "floatinginput",  placeholder: "Email" %>
-          <label for="floatingInput">Email address</label>
-        </div>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %>
-        <div class="form-floating">
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.text_field :position, autofocus: true, autocomplete: "position", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Position</label>
+              </div>
+            </div>
 
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "floatinginput",  placeholder: "Password" %>
-          <label for="floatingInput">Password</label>
-        </div>
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { :class => "form-select", :id => "floatinginput", placeholder: "a" } %>
+                <label for="floatingInput">Role</label>
+              </div>  
+            </div>
 
-        <div class="form-floating">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "floatinginput",  placeholder: "Password confirmation" %>
-                    <label for="floatingInput">Password confirmation</label>
-        </div>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
 
-        <div class="actions pt-3">
-          <%= f.submit "Sign up", class: "w-100 btn btn-lg btn-primary" %>
-        </div>
-      <% end %>
+            <div class="col-sm-6">
+              <div class="form-floating">
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Password</label>
+              </div>
+            </div>
 
-      <%= render "devise/shared/links" %>
-    </div>
+            <div class="col-sm-6">
+              <div class="form-floating">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Password confirmation</label>
+              </div>
+            </div>
+
+            <em>Optional</em>
+            
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.text_field :office_phone, autofocus: true, autocomplete: "office_phone", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Office phone</label>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.text_field :mobile_phone, autofocus: true, autocomplete: "mobile_phone", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Mobile phone</label>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <%= f.text_field :private_phone, autofocus: true, autocomplete: "private_phone", class: "form-control", id: "floatinginput", placeholder: "a" %>
+                <label for="floatingInput">Private phone</label>
+              </div>
+            </div>
+              
+            <div class="actions pt-3">
+              <%= f.submit "Sign up", class: "w-100 btn btn-lg btn-primary" %>
+            </div>
+    <% end %>
+
+              <%= render "devise/shared/links" %>
+              
+          </div>
+        </form>
+  </div>
 </div>
