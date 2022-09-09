@@ -4,20 +4,15 @@
         <%= render "devise/shared/error_messages", resource: resource %>
         <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
-        <div class="form-floating mb-3">
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control", id: "floatinginput",  placeholder: "First name" %>
-          <label for="floatingInput">First name</label>
+        <div >
+          <%= f.text_field :first_name, class: "form-control" %>
+
         </div>
 
-    <div class="form-floating mb-3">
-  
-
-
-        <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { :class => "form-select", :id => "floatinginput" } %>
-        <label for="floatingInput">Department</label>
-    </div>  
-
-
+        <div class="form-floating mb-3">
+            <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { :class => "form-select", :id => "floatinginput" } %>
+            <label for="floatingInput">Department</label>
+        </div>  
         <div class="form-floating mb-3">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "floatinginput",  placeholder: "Email" %>
           <label for="floatingInput">Email address</label>
