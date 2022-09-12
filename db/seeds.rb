@@ -1,3 +1,22 @@
+# Generate some rows for Role model
+Role.destroy_all
+Role.create!(
+  role_name: "ADMIN"
+)
+Role.create!(
+  role_name: "CEO"
+)
+Role.create!(
+  role_name: "EMPLOYEE"
+)
+Role.create!(
+  role_name: "SECRETARY"
+)
+
+#create an admin user
+#todo
+#setup constraints on rolename, dept name, etc
+
 # Generate some rows for Department model
 Department.destroy_all
 10.times do |n|
@@ -7,14 +26,7 @@ Department.destroy_all
   )
 end
 
-# Generate some rows for Role model
-Role.destroy_all
-10.times do |n|
-  position = Faker::Job.position
-  Role.create!(
-    role_name: position
-  )
-end
+
 
 # Generate some rows for Company model
 Company.destroy_all
