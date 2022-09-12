@@ -12,7 +12,7 @@
           </div>
           
           <div class="col-sm-6">
-            <%= f.text_field :first_name, autofocus: true, autocomplete: "last_name", class: "form-control", id: "lastName", placeholder: "Last name" %>
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control", id: "lastName", placeholder: "Last name" %>
           </div>
 
           <div class="col-sm-6">
@@ -20,12 +20,9 @@
           </div>
 
           <div class="col-sm-6">
-            <div class="input-group has-validation">
+            <div class="input-group">
               <span class="input-group-text">Date of birth: </span>
               <%= f.date_field :date_of_birth, autofocus: true, autocomplete: "date_of_birth", class: "form-control", id: "dateOfBirth", placeholder: "Date of birth" %>
-              <div class="invalid-feedback">
-                Date of birth is required.
-              </div>
             </div>
           </div>
 
