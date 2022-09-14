@@ -1,43 +1,103 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="devise-sign-up mt-3" >
+  <div class="row g-5 ">
+    <h4 class="text-center"> Edit <%= resource_name.to_s.humanize %></h4>
+    <div class="col-lg-12">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <form class="needs-validation" novalidate>
+        <div class="row g-3">
+          <div class="col-sm-6">       
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control", id: "firstName", placeholder: "First name" %>              
+          </div>
+          
+          <div class="col-sm-6">
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control", id: "lastName", placeholder: "Last name" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="col-sm-6">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "eMail", placeholder: "E-mail" %>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="input-group">
+              <span class="input-group-text">Date of birth: </span>
+              <%= f.date_field :date_of_birth, autofocus: true, autocomplete: "date_of_birth", class: "form-control", id: "dateOfBirth", placeholder: "Date of birth" %>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { :class => "form-select", :id => "floatinginput", placeholder: "a" } %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { :class => "form-select", :id => "floatinginput", placeholder: "a" } %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { :class => "form-select", :id => "floatinginput", placeholder: "a" } %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.text_field :position, autofocus: true, autocomplete: "position", class: "form-control", id: "floatinginput", placeholder: "Position" %>
+          </div>
+
+          <!--TODO: password reset done here or somewhere else? -->
+          <% if @minimum_password_length %>
+            <em class="text-center">(Reset password | <%= @minimum_password_length %> characters minimum) Leave blank if you don't want to change it</em>
+          <% end %>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="col-sm-6">
+            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", id: "floatinginput", placeholder: "Current Password" %>
+          </div>
+
+
+          <div class="col-sm-6">
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "floatinginput", placeholder: "New Password" %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "floatinginput", placeholder: "New Password confirmation" %>
+          </div>
+
+          <hr class="my-4">
+
+          <em class="text-center">Optional:</em>
+
+          <div class="col-sm-6">
+            <%= f.text_field :office_phone, autofocus: true, autocomplete: "office_phone", class: "form-control", id: "floatinginput", placeholder: "Office phone" %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.text_field :mobile_phone, autofocus: true, autocomplete: "mobile_phone", class: "form-control", id: "floatinginput", placeholder: "Mobile phone" %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.text_field :private_phone, autofocus: true, autocomplete: "private_phone", class: "form-control", id: "floatinginput", placeholder: "Private phone" %>
+          </div>  
+
+          <hr class="my-4">
+
+          <div class="actions pt-3">
+            <%= f.submit "Update", class: "w-100 btn btn-lg btn-primary" %>
+          </div>
+
+          <% end %>
+          <hr class="my-4">
+          <!--
+          <h3>Cancel my account</h3>
+
+          <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+          <%= link_to "Back", :back %>
+           -->  
+          
+        </div>
+      </form>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
