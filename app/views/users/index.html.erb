@@ -27,10 +27,10 @@
               <td><%= user.first_name %></td>
               <td><%= user.last_name %></td>
               <td><%= user.email %></td>
-              <td><%= user.date_of_birth %></td>
-              <td><%= user.company_id%></td>
-              <td><%= user.department_id %></td>
-              <td><%= user.role_id %></td>
+              <td><%= l user.date_of_birth, format: '%_d. %B %Y.' %></td>
+              <td><%= user.company.company_name %></td>
+              <td><%= user.department.department_name %></td>
+              <td><%= user.role.role_name %></td>
               <td><%= user.position %></td>
               <td><%= user.office_phone %></td>
               <td><%= user.mobile_phone %></td>
