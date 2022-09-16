@@ -1,28 +1,8 @@
 <%= notice %>
-<div class="card">
+<div class="card w-75 mx-auto">
   <h5 class="card-header">Edit role</h5>
   <div class="card-body">
-    <%= form_with(model: @role , local: true) do |f| %>
-      <%= render "home/error_msgs", model_name: @role %>
-      <table>
-        <tr>
-          <td>
-            <%= f.label :role_name, "Role name:" %>
-          </td>
-          <td>
-            <%= f.text_field :role_name %>
-          </td>
-        </tr>
-        <tr>
-          <td>        
-          </td>
-          <td>
-            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
-          </td>          
-        </tr>   
-
-      </table>
-    <% end %>
+    <%= render 'form', role: @role %>
     <br>
   </div>
   <div class="card-footer text-muted">

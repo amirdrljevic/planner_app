@@ -1,22 +1,21 @@
-<%= form_with(model: role) do |form| %>
-  <% if role.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(role.errors.count, "error") %> prohibited this role from being saved:</h2>
+    <%= form_with(model: @role , local: true) do |f| %>
+      <%= render "home/error_msgs", model_name: @role %>
+      <table>
+        <tr>
+          <td>
+            <%= f.label :role_name, "Role name:" %>
+          </td>
+          <td>
+            <%= f.text_field :role_name, placeholder:"Type a role" %>
+          </td>
+        </tr>
+        <tr>
+          <td>        
+          </td>
+          <td>
+            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+          </td>          
+        </tr>   
 
-      <ul>
-        <% role.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :role_name, style: "display: block" %>
-    <%= form.text_field :role_name %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+      </table>
+    <% end %>
