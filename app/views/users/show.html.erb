@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card w-25 mx-auto">
   <h5 class="card-header">My profile</h5>
   <div class="card-body">
     <table>
@@ -22,6 +22,16 @@
           <%= @user.last_name %>
         </td>
       </tr> 
+
+      <tr>
+        <td>
+          E-mail:
+        </td>
+
+        <td>
+          <%= @user.email %>
+        </td>
+      </tr> 
       
       <tr>
         <td>
@@ -33,7 +43,7 @@
         </td>
       </tr>     
 
-            <tr>
+      <tr>
         <td>
           Company:
         </td>
@@ -42,15 +52,61 @@
           <%= @user.company.company_name %>
         </td>
       </tr>  
-    </table>
-    <p class="card-text">First name: <%= @user.first_name %></p>
-    <p class="card-text">Last name: <%= @user.last_name %></p>
-    <p class="card-text">Date of birth: <%= @user.date_of_birth %></p>
-    
+
+      <tr>
+        <td>
+          Department:
+        </td>
+
+        <td>
+          <%= @user.department.department_name %>
+        </td>
+      </tr> 
+
+      <tr>
+        <td>
+          Position:
+        </td>
+
+        <td>
+          <%= @user.position %>
+        </td>
+      </tr> 
+
+      <tr>
+        <td>
+          Office phone:
+        </td>
+
+        <td>
+          <%= @user.office_phone %>
+        </td>
+      </tr> 
+
+      <tr>
+        <td>
+          Mobile phone:
+        </td>
+
+        <td>
+          <%= @user.mobile_phone %>
+        </td>
+      </tr> 
+
+      <tr>
+        <td>
+          Private phone:
+        </td>
+
+        <td>
+          <%= @user.private_phone %>
+        </td>
+      </tr> 
+
+    </table>    
   </div>
   <div class="card-footer text-muted">
     <%= link_to "Edit", edit_registration_path(@user), class: "btn btn-outline-secondary btn-sm" %> 
-    <%= link_to "Back to users", '', class: "btn btn-outline-secondary btn-sm"  %>
     <%= link_to "Delete", @user, method: :delete, data: {turbo_method: :delete, 
                                                               turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm"  %>
   </div>

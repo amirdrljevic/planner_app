@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="card">
+<div class="card w-75 mx-auto">
   <h5 class="card-header">Departments</h5>
   <div class="card-body">
     <div class="table-responsive">
@@ -17,10 +17,17 @@
             <tr>
               <td><%= department.id %></td>
               <td><%= department.department_name %></td>
-              <td><%= link_to "Show", department, class: 'text-secondary' %></td>
-              <td><%= link_to "Edit", edit_department_path(department.id), class: 'text-secondary' %></td>
-              <td><%= link_to "Delete", department, class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
-                                                                            turbo_confirm: 'Are you sure?'}  %></td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+                  <ul class="dropdown-menu">
+                    <li><button class="dropdown-item" type="button"><%= link_to "Show", department, class: 'text-secondary' %></button></li>
+                    <li><button class="dropdown-item" type="button"><%= link_to "Edit", edit_department_path(department.id), class: 'text-secondary' %></button></li>
+                    <li><button class="dropdown-item" type="button"><%= link_to "Delete", department, class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
+                                                                            turbo_confirm: 'Are you sure?'}  %></button></li>
+                  </ul>
+                </div>
+              </td>
 
                   
             </tr>
