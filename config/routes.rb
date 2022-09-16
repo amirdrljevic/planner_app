@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:index, :show]
+  #resources :users, only: [:index, :show] #leave it for now, but it will probably go
+  resources :users, :controller => "users" 
   get 'home/index'
   resources :companies
   resources :roles
   root 'home#index'
   resources :departments
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
