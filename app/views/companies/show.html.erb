@@ -1,24 +1,66 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="card">
+<div class="card w-25 mx-auto">
   <h5 class="card-header">Company</h5>
   <div class="card-body">     
 
-    <p class="card-text">Name: <%= @company.company_name %></p>
-    <p class="card-text">Street address: <%= @company.street_address %></p>
-    <p class="card-text">Postal code: <%= @company.postal_code %></p>
-    <p class="card-text">City: <%= @company.city %></p>
-    <p class="card-text">Country: <%= @company.country %></p>
+    <table>
+      <tr>
+          <td>
+            Name:
+          </td>
 
+          <td>
+            <%= @company.company_name %>
+          </td>
+        </tr>
+        <hr class="dropdown-divider">
+        <tr>
+          <td>
+            Street address:
+          </td>
 
-     
+          <td>
+            <%= @company.street_address %>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            Postal code:
+          </td>
+
+          <td>
+            <%= @company.postal_code %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            City:
+          </td>
+
+          <td>
+            <%= @company.city %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Country:
+          </td>
+
+          <td>
+            <%= @company.country %>
+          </td>
+        </tr>
+      </table>
+
   </div>
   <div class="card-footer text-muted">
   <%= link_to "Edit", edit_company_path(@company), class: "btn btn-outline-secondary btn-sm" %> 
     <%= link_to "Back to companies", companies_path, class: "btn btn-outline-secondary btn-sm"  %>
     <%= link_to "Delete", @company, method: :delete, data: {turbo_method: :delete, 
                                                               turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm"  %>
-    <%# <%= button_to "Delete", @company, method: :delete,  
-                                                          form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger"  %>
   </div>
 </div>

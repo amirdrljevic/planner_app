@@ -1,5 +1,5 @@
 <p style="color: green"><%= notice %></p>
-<div class="card">
+<div class="card w-75 mx-auto">
   <h5 class="card-header">Companies</h5>
   <div class="card-body">
     <div class="table-responsive">
@@ -24,10 +24,17 @@
               <td class="text-center"> <%= company.postal_code %></td>
               <td class="text-center"> <%= company.city %></td>
               <td class="text-center"> <%= company.country %></td>
-              <td class="text-center"><%= link_to "Show", company, class: 'text-secondary' %></td>
-              <td class="text-center"><%= link_to "Edit", edit_company_path(company.id), class: 'text-secondary' %></td>
-              <td class="text-center"><%= link_to "Delete", company, class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
-                                                                            turbo_confirm: 'Are you sure?'}  %></td>
+              <td class="text-center">
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+                  <ul class="dropdown-menu">
+                    <li><button class="dropdown-item" type="button"><%= link_to "Show", company, class: 'text-secondary' %></button></li>
+                    <li><button class="dropdown-item" type="button"><%= link_to "Edit", edit_company_path(company.id), class: 'text-secondary' %></button></li>
+                    <li><button class="dropdown-item" type="button"><%= link_to "Delete", company, class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
+                                                                            turbo_confirm: 'Are you sure?'}  %></button></li>
+                  </ul>
+                </div>
+              </td>
             </tr>
           <% end %>
         </tbody>
