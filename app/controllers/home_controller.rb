@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     def logged_in_user
       unless user_signed_in?
         respond_to do |format|
-          format.html { redirect_to new_user_session_path, notice: t('global.controller.not_logged_in') }
+          format.html { redirect_to new_user_session_path, notice: "ADIN" }
           format.json { head :no_content }      
         end
       end    

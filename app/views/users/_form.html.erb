@@ -33,7 +33,7 @@
             <%= f.label :date_of_birth, "Date of birth:" %>   
           </td>
           <td>
-            <%= f.date_field :date_of_birth, placeholder:"09/16/2022"%>
+            <%= f.date_field :date_of_birth, placeholder:"09/16/2022", class: "w-100"%>
           </td>          
         </tr>
 
@@ -44,7 +44,7 @@
             <%= f.label :company, "Company:" %>   
           </td>
           <td>
-          <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { placeholder: "a" } %>
+          <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { placeholder: "a", class: "w-100" } %>
           </td>          
         </tr>
 
@@ -53,7 +53,7 @@
             <%= f.label :department, "Department:" %>   
           </td>
           <td>
-            <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { placeholder: "a" } %>
+            <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { placeholder: "a", class: "w-100" } %>
           </td>          
         </tr>
 
@@ -62,7 +62,7 @@
             <%= f.label :role, "Role:" %>   
           </td>
           <td>
-            <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { placeholder: "a" } %>
+            <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { placeholder: "a", class: "w-100" } %>
           </td>          
         </tr>
 
