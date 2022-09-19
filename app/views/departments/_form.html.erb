@@ -1,22 +1,22 @@
-<%= form_with(model: department) do |form| %>
-  <% if department.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(department.errors.count, "error") %> prohibited this department from being saved:</h2>
+<%= form_with(model: @department , local: true) do |f| %>
+      <%= render "home/error_msgs", model_name: @department %>
+      <table>
+        <tr>
+          <td>
+            <%= f.label :department_name, "Department name:" %>
+          </td>
+          <td>
+            <%= f.text_field :department_name %>
+          </td>
+        </tr>
 
-      <ul>
-        <% department.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <tr>
+          <td>        
+          </td>
+          <td>
+            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+          </td>          
+        </tr>   
 
-  <div>
-    <%= form.label :department_name, style: "display: block" %>
-    <%= form.text_field :department_name %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+      </table>
+    <% end %>

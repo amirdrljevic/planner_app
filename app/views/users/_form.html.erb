@@ -1,0 +1,113 @@
+<%= form_with(model: @user , local: true) do |f| %>
+      <%= render "home/error_msgs", model_name: @user %>
+      <table>
+        <tr>
+          <td> 
+            <%= f.label :first_name, "First name:" %>       
+          </td>
+          <td>
+            <%= f.text_field :first_name, placeholder: "first name" %>
+          </td>          
+        </tr>
+
+        <tr>
+          <td>   
+            <%= f.label :last_name, "Last name:" %>     
+          </td>
+          <td>
+            <%= f.text_field :last_name, placeholder:"last name" %>
+          </td>          
+        </tr>
+
+        <tr>
+          <td>     
+            <%= f.label :email, "Email:" %>   
+          </td>
+          <td>
+            <%= f.email_field :email, placeholder:"Email"%>
+          </td>          
+        </tr>
+
+        <tr>
+          <td>     
+            <%= f.label :date_of_birth, "Date of birth:" %>   
+          </td>
+          <td>
+            <%= f.date_field :date_of_birth, placeholder:"09/16/2022"%>
+          </td>          
+        </tr>
+
+
+
+        <tr>
+          <td>     
+            <%= f.label :company, "Company:" %>   
+          </td>
+          <td>
+          <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { placeholder: "a" } %>
+          </td>          
+        </tr>
+
+         <tr>
+          <td>     
+            <%= f.label :department, "Department:" %>   
+          </td>
+          <td>
+            <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { placeholder: "a" } %>
+          </td>          
+        </tr>
+
+        <tr>
+          <td>     
+            <%= f.label :role, "Role:" %>   
+          </td>
+          <td>
+            <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { placeholder: "a" } %>
+          </td>          
+        </tr>
+
+        <tr>
+          <td>     
+            <%= f.label :position, "Position:" %>   
+          </td>
+          <td>
+            <%= f.text_field :position, placeholder:"Position"%>
+          </td>          
+        </tr>    
+
+        <tr>
+          <td>     
+            <%= f.label :office_phone, "Office Phone:" %>   
+          </td>
+          <td>
+            <%= f.text_field :office_phone, placeholder:"Office Phone"%>
+          </td>          
+        </tr>    
+
+        <tr>
+          <td>     
+            <%= f.label :mobile_phone, "Mobile Phone:" %>   
+          </td>
+          <td>
+            <%= f.text_field :mobile_phone, placeholder:"Mobile Phone"%>
+          </td>          
+        </tr>  
+
+        <tr>
+          <td>     
+            <%= f.label :private_phone, "Private Phone:" %>   
+          </td>
+          <td>
+            <%= f.text_field :private_phone, placeholder:"Private Phone"%>
+          </td>          
+        </tr>         
+
+        <tr>
+          <td>        
+          </td>
+          <td>
+            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+          </td>          
+        </tr>                
+      </table>        
+    <% end %>
