@@ -69,14 +69,4 @@ class CompaniesController < ApplicationController
     def company_params
       params.require(:company).permit(:company_name, :street_address, :postal_code, :city, :country)
     end
-
-    # Check if user is logged in
-    def logged_in_user
-      unless user_signed_in?
-        respond_to do |format|
-          format.html { redirect_to new_user_session_path, notice: "Restricted access. Please sign in." }
-          format.json { head :no_content }      
-        end
-      end
-    end
 end
