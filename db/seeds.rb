@@ -1,21 +1,18 @@
 # Generate some rows for Role model
-Role.destroy_all
-Role.create!(
-  role_name: "ADMIN"
-)
-Role.create!(
-  role_name: "CEO"
-)
-Role.create!(
-  role_name: "EMPLOYEE"
-)
-Role.create!(
-  role_name: "SECRETARY"
-)
-
-#create an admin user
-#todo
-#setup constraints on rolename, dept name, etc
+unless Role.any? 
+  Role.create!(
+    role_name: "ADMIN"
+  )
+  Role.create!(
+    role_name: "CEO"
+  )
+  Role.create!(
+    role_name: "EMPLOYEE"
+  )
+  Role.create!(
+    role_name: "SECRETARY"
+  )
+end
 
 # Generate some rows for Department model
 Department.destroy_all
@@ -25,8 +22,6 @@ Department.destroy_all
     department_name: field
   )
 end
-
-
 
 # Generate some rows for Company model
 Company.destroy_all
@@ -44,3 +39,31 @@ Company.destroy_all
     country:        ctry
   )
 end
+
+
+#create admin user
+first_name = "Adin"
+last_name  = "Omic"
+department_id = 1
+role_id = 1
+company_id = 1
+position = "Admnistrator"
+email = "dumbledore@great.com"
+date_of_birth =  "1899-09-19"
+password =             "avada kedavra"
+password_confirmation = "avada kedavra"
+activated = true
+activated_at = Time.zone.now
+
+User.create!(
+  first_name:   first_name,
+  last_name: last_name,
+  department_id:    department_id,
+  role_id:           role_id,
+  company_id:        company_id,
+  position:   position,
+  email: email,
+  date_of_birth:    date_of_birth,
+  password:           password,
+  password_confirmation:        password_confirmation
+)
