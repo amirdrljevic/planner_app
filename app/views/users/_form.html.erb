@@ -6,7 +6,7 @@
             <%= f.label :first_name, "First name:" %>       
           </td>
           <td>
-            <%= f.text_field :first_name, placeholder: "first name" %>
+            <%= f.text_field :first_name, placeholder: "first name", class: "form-control form-control-sm" %>
           </td>          
         </tr>
 
@@ -15,7 +15,7 @@
             <%= f.label :last_name, "Last name:" %>     
           </td>
           <td>
-            <%= f.text_field :last_name, placeholder:"last name" %>
+            <%= f.text_field :last_name, placeholder:"last name", class: "form-control form-control-sm" %>
           </td>          
         </tr>
 
@@ -24,7 +24,7 @@
             <%= f.label :email, "Email:" %>   
           </td>
           <td>
-            <%= f.email_field :email, placeholder:"Email"%>
+            <%= f.email_field :email, placeholder:"Email", class: "form-control form-control-sm" %>
           </td>          
         </tr>
 
@@ -33,7 +33,7 @@
             <%= f.label :date_of_birth, "Date of birth:" %>   
           </td>
           <td>
-            <%= f.date_field :date_of_birth, placeholder:"09/16/2022", class: "w-100"%>
+            <%= f.date_field :date_of_birth, placeholder:"09/16/2022", class: "w-100 form-control form-control-sm" %>
           </td>          
         </tr>
 
@@ -44,7 +44,7 @@
             <%= f.label :company, "Company:" %>   
           </td>
           <td>
-          <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { placeholder: "a", class: "w-100" } %>
+          <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { placeholder: "a", class: "w-100 form-select form-select-sm" } %>
           </td>          
         </tr>
 
@@ -53,7 +53,7 @@
             <%= f.label :department, "Department:" %>   
           </td>
           <td>
-            <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { placeholder: "a", class: "w-100" } %>
+            <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { placeholder: "a", class: "w-100 form-select form-select-sm" } %>
           </td>          
         </tr>
 
@@ -62,7 +62,7 @@
             <%= f.label :role, "Role:" %>   
           </td>
           <td>
-            <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { placeholder: "a", class: "w-100" } %>
+            <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { placeholder: "a", class: "w-100 form-select form-select-sm" } %>
           </td>          
         </tr>
 
@@ -71,16 +71,42 @@
             <%= f.label :position, "Position:" %>   
           </td>
           <td>
-            <%= f.text_field :position, placeholder:"Position"%>
+            <%= f.text_field :position, placeholder:"Position", class: "form-control form-control-sm" %>
           </td>          
-        </tr>    
+        </tr>
 
         <tr>
+          <td>     
+            <%= f.label :current_password, "Current Password:" %>   
+          </td>
+          <td>
+            <%= f.password_field :current_password, placeholder:"Current Password", class: "form-control form-control-sm" %>
+          </td>    
+        <tr>
+
+        <tr>
+          <td>     
+            <%= f.label :password, "New Password:" %>   
+          </td>
+          <td>
+            <%= f.password_field :password, placeholder:"New Password", class: "form-control form-control-sm" %>
+          </td>    
+        <tr>
+
+        <tr>
+          <td>     
+            <%= f.label :password_confirmation, "Confirm New Password:" %>   
+          </td>
+          <td>
+            <%= f.password_field :password_confirmation, placeholder:"Confirm New Password", class: "form-control form-control-sm" %>
+          </td>    
+        <tr>
+
           <td>     
             <%= f.label :office_phone, "Office Phone:" %>   
           </td>
           <td>
-            <%= f.text_field :office_phone, placeholder:"Office Phone"%>
+            <%= f.text_field :office_phone, placeholder:"Office Phone", class: "form-control form-control-sm" %>
           </td>          
         </tr>    
 
@@ -89,7 +115,7 @@
             <%= f.label :mobile_phone, "Mobile Phone:" %>   
           </td>
           <td>
-            <%= f.text_field :mobile_phone, placeholder:"Mobile Phone"%>
+            <%= f.text_field :mobile_phone, placeholder:"Mobile Phone", class: "form-control form-control-sm" %>
           </td>          
         </tr>  
 
@@ -98,7 +124,7 @@
             <%= f.label :private_phone, "Private Phone:" %>   
           </td>
           <td>
-            <%= f.text_field :private_phone, placeholder:"Private Phone"%>
+            <%= f.text_field :private_phone, placeholder:"Private Phone", class: "form-control form-control-sm" %>
           </td>          
         </tr>         
 

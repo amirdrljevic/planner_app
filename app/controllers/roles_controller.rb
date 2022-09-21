@@ -1,5 +1,6 @@
 class RolesController < ApplicationController
-  before_action :logged_in_user  
+  before_action :logged_in_user
+  before_action :is_admin  
   before_action :set_role, only: %i[ show edit update destroy ]
 
   # GET /roles or /roles.json
@@ -77,5 +78,15 @@ class RolesController < ApplicationController
           format.json { head :no_content }      
         end
       end
-    end    
+    end
+    
+    # Check if user is admin
+    def is_admin
+      if current_user.role.role_name != 'ADMIN'
+        respond_to do |format|
+          format.html { redirect_to root_path, notice: "Restricted access. You are not an administrator." }
+          format.json { head :no_content }      
+        end
+      end
+    end
 end
