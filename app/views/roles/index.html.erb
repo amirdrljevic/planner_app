@@ -4,7 +4,7 @@
   <h5 class="card-header">Roles</h5>
   <div class="card-body">
     <div class="table-responsive">
-        <table class="table table-striped table-sm table-bordered">
+        <table class="table table-hover table-sm table-bordered">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -35,7 +35,11 @@
       </div>
   </div>
   <div class="card-footer text-muted">
-    <caption>There are: <%= Role.count %> roles</caption>
+        <% if Role.count == 1%>
+          <caption>There is: <%= Role.count %> role</caption>
+        <% else %>
+          <caption>There are: <%= Role.count %> role</caption>
+        <% end %>
     <!--<%= link_to "New role", new_role_path, class: 'btn btn-outline-primary btn-sm' %>-->
   </div>
 </div>      
