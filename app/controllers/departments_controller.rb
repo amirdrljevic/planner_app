@@ -68,14 +68,4 @@ class DepartmentsController < ApplicationController
     def department_params
       params.require(:department).permit(:department_name)
     end
-
-    # Check if user is logged in
-    def logged_in_user
-      unless user_signed_in?
-        respond_to do |format|
-          format.html { redirect_to new_user_session_path, notice: "Restricted access. Please sign in." }
-          format.json { head :no_content }      
-        end
-      end
-    end    
 end
