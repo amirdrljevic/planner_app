@@ -40,9 +40,9 @@
                 <div class="dropdown">
                   <button class="btn btn-sm btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
                   <ul class="dropdown-menu">
-                    <li><button class="dropdown-item" type="button"><%= link_to "Show", user, class: 'text-secondary' %></button></li>
+                    <li><button class="dropdown-item" type="button"><%= link_to "Show", users_admin_path(user), class: 'text-secondary' %></button></li>
                     <li><button class="dropdown-item" type="button"><%= link_to "Edit", edit_user_registration_path(user.id), class: 'text-secondary' %></button></li>
-                    <li><button class="dropdown-item" type="button"><%= link_to "Delete", user, class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
+                    <li><button class="dropdown-item" type="button"><%= link_to "Delete", users_admin_path(user), class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
                                                                             turbo_confirm: 'Are you sure?'}  %></button></li>
                   </ul>
                 </div>
@@ -55,7 +55,7 @@
   </div>
   <div class="card-footer text-muted">
     <!--TODO: User is signed in already so no new users can be created -->
-    <%= link_to "Create new user", new_user_path, class: 'btn btn-outline-primary btn-sm' %>
+    <%= link_to "Create new user", new_users_admin_path, class: 'btn btn-outline-primary btn-sm' %>
     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
     <label class="form-check-label" for="flexCheckDefault">View Phones </label>
         <% if User.count == 1%>

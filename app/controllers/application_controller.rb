@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
                                                         :position, 
                                                         :office_phone, 
                                                         :mobile_phone, 
-                                                        :private_phone])
+                                                        :private_phone,
+                                                        :email,
+                                                        :password,
+                                                        :password_confirmation])
     end
 
   private
