@@ -117,10 +117,21 @@
         </td>
       </tr> 
 
+      <tr>
+        <td>
+          Image:
+        </td>
+
+        <td>
+        <% #debugger %>
+          <%= image_tag @user.image if @user.image.attached? %>
+        </td>
+      </tr> 
+
     </table>    
   </div>
   <div class="card-footer text-muted">
-    <%= link_to "Edit", edit_registration_path(@user), class: "btn btn-outline-secondary btn-sm" %> 
+    <%= link_to "Edit", edit_users_admin_path(@user), class: "btn btn-outline-secondary btn-sm" %> 
     <%= link_to "Delete", users_admin_path(@user), method: :delete, data: {turbo_method: :delete, 
                                                               turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm"  %>
   </div>
