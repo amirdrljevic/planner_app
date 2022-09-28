@@ -9,13 +9,29 @@ class UsersController < ApplicationController
   end
 
   def new
-    
     @user = User.new
   end
+
+  def edit
+  end
+
+  # PATCH/PUT /users_admin/1 or /users_admin/1.json
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to users_admin_url(@user), notice: "User was successfully updated." }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end  
 
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    @user.image.attach(params[:user][:image])
 
     respond_to do |format|
       if @user.save
@@ -45,7 +61,8 @@ class UsersController < ApplicationController
                                    :department_id, 
                                    :position, 
                                    :password,
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :image)
 
     end        
 end

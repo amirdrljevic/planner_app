@@ -41,7 +41,7 @@
                   <button class="btn btn-sm btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
                   <ul class="dropdown-menu">
                     <li><button class="dropdown-item" type="button"><%= link_to "Show", users_admin_path(user), class: 'text-secondary' %></button></li>
-                    <li><button class="dropdown-item" type="button"><%= link_to "Edit", edit_user_registration_path(user.id), class: 'text-secondary' %></button></li>
+                    <li><button class="dropdown-item" type="button"><%= link_to "Edit", edit_users_admin_path(user.id), class: 'text-secondary' %></button></li>
                     <li><button class="dropdown-item" type="button"><%= link_to "Delete", users_admin_path(user), class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
                                                                             turbo_confirm: 'Are you sure?'}  %></button></li>
                   </ul>
