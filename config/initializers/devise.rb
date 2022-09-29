@@ -323,7 +323,7 @@ Devise.setup do |config|
   end
   
    Devise.setup do |config|
-    ...
+    #...
     # Configure the parent class to the custom controller.
     config.parent_controller = 'TurboDeviseUserController'
     config.navigational_formats = ['*/*', :html, :turbo_stream]
