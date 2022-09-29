@@ -17,6 +17,7 @@ gem 'faker', '~> 2.22'
 
 gem "bootsnap", require: false
 gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'aws-sdk-s3', '~> 1.114'
 
 group :development, :test do
   #gem "debug", platforms: %i[ mri mingw x64_mingw ]
