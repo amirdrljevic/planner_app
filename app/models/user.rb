@@ -13,4 +13,9 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { minimum: 3 }
   validates :position, presence: true, length: { minimum: 3 }
   validates :date_of_birth, presence: true
+
+  validates :image,   content_type: { in: %w[image/jpeg image/gif image/png],
+                                      message: "must be a valid image format" },
+                                      size:         { less_than: 1.megabytes,
+                                                      message:   "should be less than 1MB" }
 end

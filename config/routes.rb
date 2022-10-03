@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   resources :roles
   root 'home#index'
   resources :departments
+
+  # devise_scope :user do
+  #   root to: "devise/sessions#new"
+  # end
 end
