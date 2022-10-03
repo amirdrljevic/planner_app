@@ -139,3 +139,6 @@ body {
   border-radius: 0px; /* Date of Birth gray area on sign up*/
 }
 
+.profile-image{
+  width: 150px;
+}

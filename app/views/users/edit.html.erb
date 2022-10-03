@@ -93,26 +93,6 @@
           </td>          
         </tr>
 
-
-
-        <tr>
-          <td>     
-            <%= f.label :password, "New Password:" %>   
-          </td>
-          <td>
-            <%= f.password_field :password, placeholder:"New Password", class: "form-control form-control-sm" %>
-          </td>    
-        </tr>
-
-        <tr>
-          <td>     
-            <%= f.label :password_confirmation, "Confirm New Password:" %>   
-          </td>
-          <td>
-            <%= f.password_field :password_confirmation, placeholder:"Confirm New Password", class: "form-control form-control-sm" %>
-          </td>    
-        </tr>
-
         <tr>
           <td>     
             <%= f.label :office_phone, "Office Phone:" %>   
@@ -155,6 +135,7 @@
     <br>
   </div>
   <div class="card-footer text-muted">
-    <%= link_to "Back to users", users_admin_index_path, class: "btn btn-outline-secondary btn-sm"  %>
+    <%= link_to "Back to user", users_admin_path(@user), class: "btn btn-outline-secondary btn-sm"  %>
+    <%= link_to "List of users", users_admin_index_path, class: "btn btn-outline-secondary btn-sm"  %>
   </div>
 </div>
