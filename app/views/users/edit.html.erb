@@ -63,9 +63,7 @@
                   </div>                                            
               </div>
 
-              <div class="mt-5 text-center">
-                <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
-              </div>
+
           </div>
       </div>
       <div class="col-md-4">
@@ -92,16 +90,17 @@
               </div>
           </div>
       </div>
-      <% end %>
-      <div class="card-footer text-muted text-end">
-        <%= link_to "Back to user", users_admin_path(@user), class: "btn btn-outline-secondary btn-sm"  %>
-        <%= link_to "List of users", users_admin_index_path, class: "btn btn-outline-secondary btn-sm"  %>
-      </div>
     </div>
-
+    <div class="mt-1 text-center">
+      <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+    </div>
   </div>
-
+  <% end %>
 </div>
+  <div class="card-footer text-muted text-end">
+    <%= link_to "Back to user", users_admin_path(@user), class: "btn btn-outline-secondary btn-sm"  %>
+    <%= link_to "List of users", users_admin_index_path, class: "btn btn-outline-secondary btn-sm"  %>
+  </div>
 </div>
 
 
