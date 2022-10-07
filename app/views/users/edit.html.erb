@@ -1,141 +1,107 @@
 <%= notice %>
-<div class="card w-75 mx-auto">
-  <h5 class="card-header">Edit user</h5>
-  <div class="card-body">
+<div class="container rounded bg-white mb-5">
+    <div class="row">
+      <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <%= image_tag (@user.image if @user.image.attached?), class: "profile-image mt-2 rounded-circle" %>
+      
+            <span class="font-weight-bold">
+              <%= @user.first_name + ' ' + @user.last_name %>
+            </span>
+            <span class="text-black-50"><%= @user.email %></span><span> </span>
+          </div>
+      </div>
+      <div class="col-md-5 border-right">
+          <div class="p-1 py-1">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <% if  @user == current_user %>
+                  <h4 class="text-right">Edit my profile</h5>
+                <% else %>
+                  <h4 class="text-right">Edit user</h5>
+                <% end %>
+              </div>
+              <%= form_with(model: @user , url: users_admin_path(@user) ) do |f| %>
+              <%= render "home/error_msgs", model_name: @user %>
+              <div class="row mt-2">
+                  <div class="col-md-6">
+                    <label class="labels">First name</label>
+                    <%= f.text_field :first_name, placeholder: "first name", class: "form-control" %>
+                    </div>
+                  <div class="col-md-6">
+                    <label class="labels">Last name</label>
+                    <%= f.text_field :last_name, placeholder:"last name", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label class="labels">Email</label>
+                    <%= f.email_field :email, placeholder:"Email", class: "form-control" %>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="labels">Date of birth:</label>
+                    <%= f.date_field :date_of_birth, placeholder:"Date of birth", class: "form-control" %>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="labels">Office phone:</label>
+                    <%= f.text_field :office_phone, placeholder:"Office Phone", class: "form-control" %>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="labels">Mobile phone:</label>
+                    <%= f.text_field :mobile_phone, placeholder:"Mobile Phone", class: "form-control" %>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="labels">Private phone:</label>
+                    <%= f.text_field :private_phone, placeholder:"Private Phone", class: "form-control" %>
+                  </div>           
+                  <div class="col-md-12">
+                    <label class="labels">Password:</label>
+                    <%= f.password_field :password, class: "form-control" %>
+                  </div>     
+                  <div class="col-md-12">
+                    <label class="labels">Password confirmation:</label>
+                    <%= f.password_field :password_confirmation, class: "form-control" %>
+                  </div>                                            
+              </div>
 
+              <div class="mt-5 text-center">
+                <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="p-3 py-5">
+              <div class="col-md-12">
+                <label class="labels">Edit image:</label>
+                <%= f.file_field :image, class: "form-control" %>
+              </div><br>
+              <div class="col-md-12">
+                <label class="labels">Company</label>
+                <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { placeholder: "a", class: "form-select" } %>
+              </div> <br>
+              <div class="col-md-12">
+                <label class="labels">Department</label>
+                <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { placeholder: "a", class: "form-select" } %>
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Role</label>
+                <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { placeholder: "a", class: "form-select" } %>
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Position:</label>
+                <%= f.text_field :position, placeholder:"Position", class: "form-control" %>
+              </div>
+          </div>
+      </div>
+      <% end %>
+      <div class="card-footer text-muted text-end">
+        <%= link_to "Back to user", users_admin_path(@user), class: "btn btn-outline-secondary btn-sm"  %>
+        <%= link_to "List of users", users_admin_index_path, class: "btn btn-outline-secondary btn-sm"  %>
+      </div>
+    </div>
 
-
-<%= form_with(model: @user , url: users_admin_path(@user) ) do |f| %>
-      <%= render "home/error_msgs", model_name: @user %>
-      <table>
-        <tr>
-          <td> 
-            <%= f.label :first_name, "First name:" %>       
-          </td>
-          <td>
-            <%= f.text_field :first_name, placeholder: "first name", class: "form-control form-control-sm" %>
-          </td>          
-        </tr>
-
-        <tr>
-          <td>   
-            <%= f.label :last_name, "Last name:" %>     
-          </td>
-          <td>
-            <%= f.text_field :last_name, placeholder:"last name", class: "form-control form-control-sm" %>
-          </td>          
-        </tr>
-
-
-        <tr>
-          <td>   
-            <%= f.label :image, "Image:" %>     
-          </td>
-          <td>
-            <%= f.file_field :image, class: "form-control form-control-sm" %>
-          </td>          
-        </tr>
-
-
-        <tr>
-          <td>     
-            <%= f.label :email, "Email:" %>   
-          </td>
-          <td>
-            <%= f.email_field :email, placeholder:"Email", class: "form-control form-control-sm" %>
-          </td>          
-        </tr>
-
-        <tr>
-          <td>     
-            <%= f.label :date_of_birth, "Date of birth:" %>   
-          </td>
-          <td>
-            <%= f.date_field :date_of_birth, placeholder:"09/16/2022", class: "w-100 form-control form-control-sm" %>
-          </td>          
-        </tr>
-
-
-
-        <tr>
-          <td>     
-            <%= f.label :company, "Company:" %>   
-          </td>
-          <td>
-          <%= f.select :company_id, Company.all.collect { |c| [c.company_name, c.id] }, { include_blank: "Select a company" }, { placeholder: "a", class: "w-100 form-select form-select-sm" } %>
-          </td>          
-        </tr>
-
-         <tr>
-          <td>     
-            <%= f.label :department, "Department:" %>   
-          </td>
-          <td>
-            <%= f.select :department_id, Department.all.collect { |d| [d.department_name, d.id] }, { include_blank: "Select a department" }, { placeholder: "a", class: "w-100 form-select form-select-sm" } %>
-          </td>          
-        </tr>
-
-        <tr>
-          <td>     
-            <%= f.label :role, "Role:" %>   
-          </td>
-          <td>
-            <%= f.select :role_id, Role.all.collect { |r| [r.role_name, r.id] }, { include_blank: "Select a role" }, { placeholder: "a", class: "w-100 form-select form-select-sm" } %>
-          </td>          
-        </tr>
-
-        <tr>
-          <td>     
-            <%= f.label :position, "Position:" %>   
-          </td>
-          <td>
-            <%= f.text_field :position, placeholder:"Position", class: "form-control form-control-sm" %>
-          </td>          
-        </tr>
-
-        <tr>
-          <td>     
-            <%= f.label :office_phone, "Office Phone:" %>   
-          </td>
-          <td>
-            <%= f.text_field :office_phone, placeholder:"Office Phone", class: "form-control form-control-sm" %>
-          </td>          
-        </tr>    
-
-        <tr>
-          <td>     
-            <%= f.label :mobile_phone, "Mobile Phone:" %>   
-          </td>
-          <td>
-            <%= f.text_field :mobile_phone, placeholder:"Mobile Phone", class: "form-control form-control-sm" %>
-          </td>          
-        </tr>  
-
-        <tr>
-          <td>     
-            <%= f.label :private_phone, "Private Phone:" %>   
-          </td>
-          <td>
-            <%= f.text_field :private_phone, placeholder:"Private Phone", class: "form-control form-control-sm" %>
-          </td>          
-        </tr>         
-
-        <tr>
-          <td>        
-          </td>
-          <td>
-            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
-          </td>          
-        </tr>                
-      </table>        
-    <% end %>
-
-
-
-    <br>
   </div>
-  <div class="card-footer text-muted">
-    <%= link_to "Back to user", users_admin_path(@user), class: "btn btn-outline-secondary btn-sm"  %>
-    <%= link_to "List of users", users_admin_index_path, class: "btn btn-outline-secondary btn-sm"  %>
-  </div>
+
 </div>
+</div>
+
+
