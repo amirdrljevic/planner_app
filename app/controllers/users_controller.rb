@@ -17,8 +17,10 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users_admin/1 or /users_admin/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
+     respond_to do |format|
+     update_params =  params[:user][:password].present? ? user_params_with_password  : user_params
+
+      if @user.update(update_params)
         format.html { redirect_to users_admin_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -51,7 +53,8 @@ class UsersController < ApplicationController
     end  
 
     #Only allow a list of trusted parameters through.
-    def user_params
+    def user_params_with_password
+         
       params.require(:user).permit(:first_name, 
                                    :last_name, 
                                    :email, 
@@ -62,7 +65,24 @@ class UsersController < ApplicationController
                                    :position, 
                                    :password,
                                    :password_confirmation,
-                                   :image)
-
-    end        
+                                   :image,
+                                   :office_phone,
+                                   :mobile_phone,
+                                   :private_phone)      
+    end    
+    
+    def user_params         
+      params.require(:user).permit(:first_name, 
+                                   :last_name, 
+                                   :email, 
+                                   :date_of_birth, 
+                                   :company_id, 
+                                   :role_id, 
+                                   :department_id, 
+                                   :position, 
+                                   :image,
+                                   :office_phone,
+                                   :mobile_phone,
+                                   :private_phone)      
+    end 
 end
