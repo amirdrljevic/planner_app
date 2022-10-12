@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_28_183405) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_205609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "status", ["open", "closed", "postponed", "n/a"]
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +62,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_183405) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "meetings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title", null: false
+    t.text "description", null: false
+    t.date "meeting_date"
+    t.time "meeting_time"
+    t.string "meeting_place", null: false
+    t.enum "status", default: "n/a", null: false, enum_type: "status"
+    t.string "tags"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_meetings_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "role_name", null: false
     t.datetime "created_at", null: false
@@ -91,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_183405) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "meetings", "users"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "roles"

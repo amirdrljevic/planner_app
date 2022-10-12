@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  title: MyString
+  description: MyText
+  meeting_date: 2022-10-12
+  meeting_time: 2022-10-12 22:56:09
+  meeting_place: MyString
+  status: 
+  tags: MyString
+
+two:
+  user: two
+  title: MyString
+  description: MyText
+  meeting_date: 2022-10-12
+  meeting_time: 2022-10-12 22:56:09
+  meeting_place: MyString
+  status: 
+  tags: MyString

@@ -14,6 +14,7 @@ gem 'tzinfo-data', '~> 1.2022', '>= 1.2022.3'
 gem 'pg', '~> 1.4', '>= 1.4.2'
 gem 'byebug', '~> 11.1', '>= 11.1.3'  #todo: think about removing this one
 gem 'faker', '~> 2.22'
+gem 'htmlbeautifier'
 
 gem "bootsnap", require: false
 gem 'devise', '~> 4.8', '>= 4.8.1'
