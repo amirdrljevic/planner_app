@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meetings
   devise_for :users
   #resources :users, only: [:index, :show] #leave it for now, but it will probably go
   resources :users_admin, :controller => "users" 
