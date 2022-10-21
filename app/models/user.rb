@@ -7,7 +7,8 @@ class User < ApplicationRecord
 
   belongs_to :department
   belongs_to :role
-  belongs_to :company      
+  belongs_to :company   
+  has_many :meetings   
 
   validates :first_name, presence: true, length: { minimum: 3 }
   validates :last_name, presence: true, length: { minimum: 3 }
