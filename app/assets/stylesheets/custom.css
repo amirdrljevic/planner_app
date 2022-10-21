@@ -142,3 +142,8 @@ body {
 .profile-image{
   width: 150px;
 }
+
+.header-image{
+  width: 38px;
+  margin-right: 5px;
+}
