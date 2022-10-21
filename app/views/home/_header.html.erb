@@ -7,11 +7,13 @@
 
   <!-- This should never happen as the header is visible only to signed in users, but we made it anyway -->
   <% if user_signed_in? %>
-    <div class="dropdown px-5">
+    <div class="dropdown mx-5">
       <button class="btn btn-sm btn-transparent dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= image_tag (current_user.image), class: "rounded-circle header-image" %>
           <%= current_user.first_name + ' ' + current_user.last_name  %>
       </button>
-      <ul class="dropdown-menu">
+      
+      <ul class="dropdown-menu dropdown-menu-end">
         <li><%= link_to 'My profile', users_admin_path(current_user), class:"dropdown-item" %></li>
         <li><%= link_to 'Edit profile', edit_users_admin_path(current_user), class:"dropdown-item" %> </li>
         <% if current_user.role.role_name == 'ADMIN' %>

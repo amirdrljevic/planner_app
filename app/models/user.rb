@@ -18,6 +18,8 @@ class User < ApplicationRecord
                                       message: "must be a valid image format" },
                                       size:         { less_than: 1.megabytes,
                                                       message:   "should be less than 1MB" }
-
+ def display_image
+       image.variant(resize_to_limit: [1000, 1000])
+ end
                                                                                                           
 end
