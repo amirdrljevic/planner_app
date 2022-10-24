@@ -1,9 +1,14 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: %i[ show edit update destroy ]
+  before_action :is_admin, only: %i[ show edit update destroy ]
 
   # GET /meetings or /meetings.json
   def index
-    @meetings = Meeting.all
+    if admin? 
+      @meetings = Meeting.all
+    else 
+      @meetings = current_user.meetings
+    end
   end
 
   # GET /meetings/1 or /meetings/1.json
@@ -13,8 +18,6 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = current_user.meetings.build
-
-
   end
 
   # GET /meetings/1/edit
@@ -68,5 +71,24 @@ class MeetingsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def meeting_params
       params.require(:meeting).permit(:user_id, :title, :description, :meeting_date, :meeting_time, :meeting_place, :status, :tags)
+    end
+
+    def admin?
+      current_user.role.role_name == 'ADMIN'
+    end
+
+    def is_admin
+       
+      if !owner? && !admin?
+        respond_to do |format|
+          format.html { redirect_to root_path, notice: "Restricted access. You are not an administrator." }
+          format.json { head :no_content }      
+        end
+      end
+    end
+
+    def owner?
+      @meeting = Meeting.find(params[:id])
+      current_user.id == @meeting.user_id 
     end
 end

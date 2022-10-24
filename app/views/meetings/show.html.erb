@@ -3,11 +3,11 @@
 <div class="card w-50 mx-auto">
   <h5 class="card-header">Meeting</h5>
   <div class="card-body">
-    <p class="card-text">Id: <%= @meeting.user_id %></p>
+    <p class="card-text">Id: <%= '('+ String(@meeting.user_id) +') ' + @meeting.user.first_name + ' ' + @meeting.user.last_name %></p>
     <p class="card-text">Title: <%= @meeting.title %></p>
     <p class="card-text">Description: <%= @meeting.description %></p>
-    <p class="card-text">Date: <%= @meeting.meeting_date %></p>
-    <p class="card-text">Time: <%= @meeting.meeting_time %></p>
+    <p class="card-text">Date: <%= l @meeting.meeting_date, format: '%d.%m.%Y' %></p>
+    <p class="card-text">Time: <%= l @meeting.meeting_time, format: '%H:%M' %></p>
     <p class="card-text">Location: <%= @meeting.meeting_place %></p>
     <p class="card-text">Status: <%= @meeting.status %></p>
     <p class="card-text">Tags: <%= @meeting.tags %></p>
