@@ -1,54 +1,53 @@
-<%= form_with(model: meeting) do |form| %>
-  <% if meeting.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
-
-      <ul>
-        <% meeting.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+<%= notice %>
+<div class="card w-75 mx-auto">
+  <h5 class="card-header">New user</h5>
+  <div class="card-body">
+    <%= form_with(model: meeting) do |form| %>
+      <% if meeting.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+          <ul>
+            <% meeting.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div>
+        <%= form.label :title, style: "display: block" %>
+        <%= form.text_field :title, class: "form-control form-control-sm" %>
+      </div>
+      <div>
+        <%= form.label :description, style: "display: block" %>
+        <%= form.text_area :description, class: "form-control form-control-sm" %>
+      </div>
+      <div>
+        <%= form.label :meeting_date, style: "display: block" %>
+        <%= form.date_field :meeting_date, class: "form-control form-control-sm" %>
+      </div>
+      <div>
+        <%= form.label :meeting_time, style: "display: block" %>
+        <%= form.time_field :meeting_time, class: "form-control form-control-sm" %>
+      </div>
+      <div>
+        <%= form.label :meeting_place, style: "display: block" %>
+        <%= form.text_field :meeting_place, class: "form-control form-control-sm" %>
+      </div>
+      <div>
+        <%= form.label :status, style: "display: block" %>
+        <%= form.text_field :status, class: "form-control form-control-sm" %>
+      </div>
+      <div>
+        <%= form.label :tags, style: "display: block" %>
+        <%= form.text_field :tags, class: "form-control form-control-sm" %>
+      </div>
+      <div>
+        <%= form.submit "Save", class: "btn btn-outline-primary btn-sm" %>
+      </div>
+    <% end %>
+    <br>
   </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="card-footer text-muted">
+    <%= link_to "Back to meetings", meetings_path, class: "btn btn-outline-secondary btn-sm"  %>
   </div>
-
-  <div>
-    <%= form.label :meeting_date, style: "display: block" %>
-    <%= form.date_field :meeting_date %>
-  </div>
-
-  <div>
-    <%= form.label :meeting_time, style: "display: block" %>
-    <%= form.time_field :meeting_time %>
-  </div>
-
-  <div>
-    <%= form.label :meeting_place, style: "display: block" %>
-    <%= form.text_field :meeting_place %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :tags, style: "display: block" %>
-    <%= form.text_field :tags %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,10 +1,21 @@
 <p style="color: green"><%= notice %></p>
-
-<%= render @meeting %>
-
-<div>
-  <%= link_to "Edit this meeting", edit_meeting_path(@meeting) %> |
-  <%= link_to "Back to meetings", meetings_path %>
-
-  <%= button_to "Destroy this meeting", @meeting, method: :delete %>
+<p style="color: green"><%= notice %></p>
+<div class="card w-50 mx-auto">
+  <h5 class="card-header">Meeting</h5>
+  <div class="card-body">
+    <p class="card-text">Id: <%= @meeting.user_id %></p>
+    <p class="card-text">Title: <%= @meeting.title %></p>
+    <p class="card-text">Description: <%= @meeting.description %></p>
+    <p class="card-text">Date: <%= @meeting.meeting_date %></p>
+    <p class="card-text">Time: <%= @meeting.meeting_time %></p>
+    <p class="card-text">Location: <%= @meeting.meeting_place %></p>
+    <p class="card-text">Status: <%= @meeting.status %></p>
+    <p class="card-text">Tags: <%= @meeting.tags %></p>
+  </div>
+  <div class="card-footer text-muted">
+    <%= link_to "Edit", edit_meeting_path(@meeting), class: "btn btn-outline-secondary btn-sm" %>
+    <%= link_to "Back to meetings", meetings_path, class: "btn btn-outline-secondary btn-sm"  %>
+    <%= link_to "Delete", @meeting, method: :delete, data: {turbo_method: :delete, 
+                                                              turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm"  %>
+  </div>
 </div>
