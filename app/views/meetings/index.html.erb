@@ -1,14 +1,58 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Meetings</h1>
-
-<div id="meetings">
-  <% @meetings.each do |meeting| %>
-    <%= render meeting %>
-    <p>
-      <%= link_to "Show this meeting", meeting %>
-    </p>
-  <% end %>
+<div class="card w-75 mx-auto">
+  <h5 class="card-header">Meetings</h5>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover table-sm table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Meeting name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Location</th>
+            <th scope="col">Status</th>
+            <th scope="col">Tags</th>
+            <th scope="col" colspan="3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @meetings.each do |meeting| %>
+            <tr>
+              <td><%= meeting.id %></td>
+              <td><%= meeting.user_id %></td>
+              <td><%= meeting.title %></td>
+              <td><%= meeting.description %></td>
+              <td><%= meeting.meeting_date %></td>
+              <td><%= meeting.meeting_time %></td>
+              <td><%= meeting.meeting_place %></td>
+              <td><%= meeting.status %></td>
+              <td><%= meeting.tags %></td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+                  <ul class="dropdown-menu">
+                    <li><button class="dropdown-item" type="button"><%= link_to "Show", meeting, class: 'text-secondary' %></button></li>
+                    <li><button class="dropdown-item" type="button"><%= link_to "Edit", edit_meeting_path(meeting.id), class: 'text-secondary' %></button></li>
+                    <li><button class="dropdown-item" type="button"><%= link_to "Delete", meeting, class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
+                                                                            turbo_confirm: 'Are you sure?'}  %></button></li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <%= link_to "New meeting", new_meeting_path, class: 'btn btn-outline-primary btn-sm' %>
+    <% if Meeting.count == 1%>
+      <caption>There is: <%= Meeting.count %> meeting</caption>
+    <% else %>
+      <caption>There are: <%= Meeting.count %> meetings</caption>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New meeting", new_meeting_path %>
