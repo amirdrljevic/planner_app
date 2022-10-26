@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
+  # TODO: Only admins can see every user (index and show), others can't
   def edit
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params_with_password)
     @user.image.attach(params[:user][:image])
 
     respond_to do |format|
