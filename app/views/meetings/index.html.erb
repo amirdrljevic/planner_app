@@ -25,8 +25,8 @@
               <td><%= meeting.user.first_name + ' ' + meeting.user.last_name %></td>
               <td><%= meeting.title %></td>
               <td><%= meeting.description %></td>
-              <td><%= l meeting.meeting_date, format: '%d.%m.%Y' %></td>
-              <td><%= l meeting.meeting_time, format: '%H:%M' %></td>
+              <td><%= meeting.meeting_date.present? ? ( l meeting.meeting_date, format: '%d.%m.%Y' ) : '--' %></td>
+              <td><%= meeting.meeting_time.present? ? ( l meeting.meeting_time, format: '%H:%M' ) : '--' %></td>
               <td><%= meeting.meeting_place %></td>
               <td><%= meeting.status %></td>
               <td><%= meeting.tags %></td>

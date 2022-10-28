@@ -35,7 +35,7 @@
       </div>
       <div>
         <%= form.label :status, style: "display: block" %>
-        <%= form.text_field :status, class: "form-control form-control-sm" %>
+        <%= form.select :status, options_for_select(Meeting.statuses.map { |k, v| [k.humanize.capitalize, v] }, :selected => form.object.status ), {}, {class: "w-100 form-select form-select-sm"} %>
       </div>
       <div>
         <%= form.label :tags, style: "display: block" %>
