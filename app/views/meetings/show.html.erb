@@ -15,7 +15,9 @@
   <div class="card-footer text-muted">
     <%= link_to "Edit", edit_meeting_path(@meeting), class: "btn btn-outline-secondary btn-sm" %>
     <%= link_to "Back to meetings", meetings_path, class: "btn btn-outline-secondary btn-sm"  %>
+    <%= link_to "Add comment", new_comment_path(meeting_id: @meeting.id, user_id: @user.id), method: :post, class: "btn btn-outline-secondary btn-sm" %>
     <%= link_to "Delete", @meeting, method: :delete, data: {turbo_method: :delete, 
                                                               turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm"  %>
   </div>
 </div>
+@
