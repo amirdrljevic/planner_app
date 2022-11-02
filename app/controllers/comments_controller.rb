@@ -14,8 +14,8 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @meeting = Meeting.find(params[:meeting_id])
-    @user = current_user
+    @comment = @meeting.comments.build
+    @comment.user = current_user
   end
 
   # GET /comments/1/edit
@@ -24,12 +24,12 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @meeting = Meeting.find(params[:id])
-    @user = current_user
+    @comment = @meeting.comments.build(comment_params)
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to meetings_path(@meeting), notice: "Comment was successfully created." }
+        format.html { redirect_to meeting_comments_path(@meeting), notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { redirect_to meetings_path(@meeting), notice: "Comment was not created." }
@@ -71,10 +71,11 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.permit(:meeting_id, :user_id, :text_comment)
+      params.require(:comment).permit(:meeting_id, :user_id, :text_comment)
     end
 
     def get_meeting
+      
       @meeting = Meeting.find(params[:meeting_id])
     end
 end
