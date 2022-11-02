@@ -1,10 +1,11 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: %i[ show edit update destroy ]
   before_action :is_admin, only: %i[ show edit update destroy ]
+  before_action :check_for_comments, only: [:destroy]
 
   # GET /meetings or /meetings.json
   def index
-    if admin? 
+    if admin?
       @meetings = Meeting.all
     else 
       @meetings = current_user.meetings
@@ -13,6 +14,9 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1 or /meetings/1.json
   def show
+    @meeting = Meeting.find(params[:id])
+    @user = current_user
+    #Ex:- :limit => 40
   end
 
   # GET /meetings/new
@@ -90,5 +94,14 @@ class MeetingsController < ApplicationController
     def owner?
       @meeting = Meeting.find(params[:id])
       current_user.id == @meeting.user_id 
+    end
+
+    def check_for_comments
+      if @meeting.comments.any?
+        respond_to do |format|
+          format.html { redirect_to @meeting, notice: "Meeting has comments. Cannot delete." }
+          format.json { head :no_content }      
+        end
+      end
     end
 end
