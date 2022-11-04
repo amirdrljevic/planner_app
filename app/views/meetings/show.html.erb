@@ -20,4 +20,38 @@
                                                               turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm"  %>
   </div>
 </div>
-@
+
+    <div class="row">
+      <aside class="col-md-8">
+        <section class="comment_form">
+          <%= render 'comments/comment_form' %>
+        </section>
+      </aside>
+    </div>
+
+
+    <div class="col-md-8">
+      <% if @meeting.comments.any? %>
+      <hr>      
+        <h5><%= pluralize(@meeting.comments.count, "comment") %></h5>
+        <ol class="comments">
+          <% @comments.each do |comment| %>
+            <li>
+            <p class="user">
+              <i><%= comment.user.first_name + ' ' + comment.user.last_name %></i>
+              <span class="timestamp"> <%= comment.created_at.present? %></span>
+            </p>
+              <p></p>
+            <p><span class="content">
+              <%= comment.text_comment %>
+              </span>
+            </p>
+            </li>
+
+          <% end %>
+        </ol>
+      <% end %>
+    </div>
+
+
+    

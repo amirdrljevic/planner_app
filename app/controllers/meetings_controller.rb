@@ -15,8 +15,10 @@ class MeetingsController < ApplicationController
   # GET /meetings/1 or /meetings/1.json
   def show
     @meeting = Meeting.find(params[:id])
-    @user = current_user
-    #Ex:- :limit => 40
+    @comment = @meeting.comments.build
+    @comment.user = current_user
+    @comments = @meeting.comments
+    debugger
   end
 
   # GET /meetings/new

@@ -14,8 +14,8 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = @meeting.comments.build
-    @comment.user = current_user
+    @meeting = Meeting.find(params[:id])
+    @comment = @meeting.comments.build(comment_params)
   end
 
   # GET /comments/1/edit
@@ -24,15 +24,16 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
+    @meeting = Meeting.find(params[:id])
     @comment = @meeting.comments.build(comment_params)
     @comment.user = current_user
-
+    debugger
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to meeting_comments_path(@meeting), notice: "Comment was successfully created." }
+        format.html { redirect_to roles_path, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { redirect_to meetings_path(@meeting), notice: "Comment was not created." }
+        format.html { redirect_to meeting_path(@meeting), notice: "Comment was not created." }
         format.html { render :new, status: :unprocessable_entity }
         #format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
@@ -64,18 +65,17 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constraints between actions. This one came as default... right now it doesn't do anything. not needed. 
     def set_comment
       @comment = Comment.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:meeting_id, :user_id, :text_comment)
+      params.require(:comment).permit(:user_id, :meeting_id, :text_comment)
     end
 
     def get_meeting
-      
       @meeting = Meeting.find(params[:meeting_id])
     end
 end

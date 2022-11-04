@@ -147,3 +147,32 @@ body {
   width: 38px;
   margin-right: 5px;
 }
+
+
+/* comments */
+
+.comments {
+  list-style: none;
+  padding: 0;
+}
+.comments li {
+    padding: 5px;
+    margin-bottom: 10px;
+    list-style-position:inside;
+    border: 1px solid #5f606138;
+    border-radius: 7px;
+    
+  }
+  .comments .user {
+    color: #5f6061;
+    margin-bottom: -15px !important;
+    padding-top: 0;
+  }
+  .comments.content {
+    display: block;
+  }
+  .comments.timestamp {
+    color: #5f60619f;
+    font-size:small;
+    /*display: block;*/
+  }
