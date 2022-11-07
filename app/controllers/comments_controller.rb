@@ -24,13 +24,12 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @meeting = Meeting.find(params[:id])
     @comment = @meeting.comments.build(comment_params)
     @comment.user = current_user
-    debugger
+    
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to roles_path, notice: "Comment was successfully created." }
+        format.html { redirect_to meeting_path(@meeting), notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { redirect_to meeting_path(@meeting), notice: "Comment was not created." }
@@ -59,7 +58,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to meetings_path, notice: "Comment was successfully destroyed." }
+      format.html { redirect_to meeting_path(@meeting), notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -1,5 +1,4 @@
-<p style="color: green"><%= notice %></p>
-<p style="color: green"><%= notice %></p>
+
 <div class="card w-50 mx-auto">
   <h5 class="card-header">Meeting</h5>
   <div class="card-body">
@@ -15,7 +14,6 @@
   <div class="card-footer text-muted">
     <%= link_to "Edit", edit_meeting_path(@meeting), class: "btn btn-outline-secondary btn-sm" %>
     <%= link_to "Back to meetings", meetings_path, class: "btn btn-outline-secondary btn-sm"  %>
-    <%= link_to "Add comment", new_meeting_comment_path(@meeting), class: "btn btn-outline-secondary btn-sm" %>
     <%= link_to "Delete", @meeting, method: :delete, data: {turbo_method: :delete, 
                                                               turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm"  %>
   </div>
@@ -36,18 +34,24 @@
         <h5><%= pluralize(@meeting.comments.count, "comment") %></h5>
         <ol class="comments">
           <% @comments.each do |comment| %>
+          <% #next unless comment.created_at.present?%>
+
             <li>
             <p class="user">
-              <i><%= comment.user.first_name + ' ' + comment.user.last_name %></i>
-              <span class="timestamp"> <%= comment.created_at.present? %></span>
+              <i>Author: <%= comment.user.first_name + ' ' + comment.user.last_name %></i><br>
+              <span class="timestamp">Posted <%= time_ago_in_words(comment.created_at)  %></span>
             </p>
               <p></p>
             <p><span class="content">
               <%= comment.text_comment %>
               </span>
             </p>
-            </li>
+              <% if current_user == comment.user %>
 
+                  <%= button_to "Delete", meeting_comment_path(@meeting, comment), class:"btn btn-danger", method: :delete %>
+              <% end %>
+            </li>
+            
           <% end %>
         </ol>
       <% end %>

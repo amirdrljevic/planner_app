@@ -168,10 +168,10 @@ body {
     margin-bottom: -15px !important;
     padding-top: 0;
   }
-  .comments.content {
+  .comments .content {
     display: block;
   }
-  .comments.timestamp {
+  .comments .timestamp {
     color: #5f60619f;
     font-size:small;
     /*display: block;*/

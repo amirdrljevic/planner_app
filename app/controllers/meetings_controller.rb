@@ -14,11 +14,9 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1 or /meetings/1.json
   def show
-    @meeting = Meeting.find(params[:id])
+    @comments = @meeting.comments.order(created_at: :desc)
     @comment = @meeting.comments.build
     @comment.user = current_user
-    @comments = @meeting.comments
-    debugger
   end
 
   # GET /meetings/new
@@ -32,6 +30,7 @@ class MeetingsController < ApplicationController
 
   # POST /meetings or /meetings.json
   def create
+    
     @meeting = current_user.meetings.build(meeting_params)
 
     respond_to do |format|
