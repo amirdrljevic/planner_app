@@ -1,0 +1,11 @@
+
+<%= form_for [@meeting, @comment] do |form| %>
+  <div class="field mb-3">
+    <%= form.label :text_comment %>
+    <%= form.text_area :text_comment, class: "form-control", placeholder: "Type your comment..." %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
