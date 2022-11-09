@@ -42,6 +42,10 @@
         <%= form.text_field :tags, class: "form-control form-control-sm" %>
       </div>
       <div>
+        <%= form.label :images, style: "display: block" %>
+        <%= form.file_field :images, :multiple => true, class: "form-control form-control-sm" %>
+      </div>
+      <div>
         <%= form.submit "Save", class: "btn btn-outline-primary btn-sm" %>
       </div>
     <% end %>

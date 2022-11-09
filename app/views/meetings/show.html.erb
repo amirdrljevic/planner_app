@@ -11,6 +11,10 @@
     <p class="card-text">Status: <%= @meeting.status %></p>
     <p class="card-text">Tags: <%= @meeting.tags %></p>
   </div>
+  <div>
+    <%= render 'layouts/attachments', meeting: @meeting %>
+  </div>
+
   <div class="card-footer text-muted">
     <%= link_to "Edit", edit_meeting_path(@meeting), class: "btn btn-outline-secondary btn-sm" %>
     <%= link_to "Back to meetings", meetings_path, class: "btn btn-outline-secondary btn-sm"  %>

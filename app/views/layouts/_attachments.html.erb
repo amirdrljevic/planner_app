@@ -1,0 +1,17 @@
+<% if meeting.images.attached? %>
+  <div class="row">
+    <% meeting.images.each do |file| %>
+      <% if file.image? %>
+        <div class="message-image-container">
+          <%= image_tag(file, :width => 200) %>
+        </div>
+      <% elsif file.video? %>
+        <%= video_tag(url_for(file), class:"message-video", controls: "" ) %>
+      <% elsif file.audio? %>
+        <%= audio_tag(url_for(file), class:"message-audio", controls: "" ) %>
+      <% else %>
+        <%= link_to file.filename, url_for(file), target: "_blank", class:"message-file"%>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
