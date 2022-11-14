@@ -9,7 +9,7 @@
     <div class="dropdown mx-5">
       <button class="btn btn-sm btn-transparent dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <div class="icon-container">
-          <%= image_tag (current_user.image if current_user.image.attached?), class: "rounded-circle header-image" %>
+          <%= image_tag (user_image_tag(current_user)), class: "rounded-circle header-image" %>
           <%= turbo_stream_from "user_status" %>
         </div>
         <div>
