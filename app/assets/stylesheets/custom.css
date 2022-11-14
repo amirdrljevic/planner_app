@@ -176,3 +176,19 @@ body {
     font-size:small;
     /*display: block;*/
   }
+
+  .icon-container {
+    width: 50px;
+    height: 50;
+    position: relative;
+  }
+
+  .status-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: grey;
+    border: 2px solid white;
+    bottom: 10px;
+    right: 10px;
+  }

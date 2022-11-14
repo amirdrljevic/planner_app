@@ -3,6 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  after_update_commit {broadcast_update}
+
+
   has_one_attached :image
 
   belongs_to :department
@@ -10,6 +14,8 @@ class User < ApplicationRecord
   belongs_to :company   
   has_many :meetings
   has_many :comments
+
+  enum status: %i[offline away do_not_disturb online]
 
   validates :first_name, presence: true, length: { minimum: 3 }
   validates :last_name, presence: true, length: { minimum: 3 }
@@ -23,5 +29,24 @@ class User < ApplicationRecord
  def display_image
        image.variant(resize_to_limit: [1000, 1000])
  end
-                                                                                                          
+
+ def broadcast_update
+      broadcast_replace_to 'user_status', partial: 'users/status', user: self
+ end
+ 
+ def status_to_css
+      case status
+      when 'online'
+        'bg-success'
+      when 'away'
+        'bg-warning'
+      when 'do_not_disturb'
+        'bg-danger'
+      when 'offline'
+        'bg-secondary'
+      else
+        'bg-secondary'
+      end
+ end
+
 end

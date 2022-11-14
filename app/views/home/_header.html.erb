@@ -4,20 +4,26 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-
   <!-- This should never happen as the header is visible only to signed in users, but we made it anyway -->
   <% if user_signed_in? %>
     <div class="dropdown mx-5">
       <button class="btn btn-sm btn-transparent dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <%= image_tag (user_image_tag(current_user)), class: "rounded-circle header-image" %>
-          <%= current_user.first_name + ' ' + current_user.last_name  %>
+        <div class="icon-container">
+          <%= image_tag (current_user.image if current_user.image.attached?), class: "rounded-circle header-image" %>
+          <%= turbo_stream_from "user_status" %>
+        </div>
+        <div>
+          <%= render "users/status", user: current_user %>
+        </div>
+        <%= current_user.first_name + ' ' + current_user.last_name  %>
       </button>
-      
       <ul class="dropdown-menu dropdown-menu-end">
         <li><%= link_to 'My profile', users_admin_path(current_user), class:"dropdown-item" %></li>
         <li><%= link_to 'Edit profile', edit_users_admin_path(current_user), class:"dropdown-item" %> </li>
         <% if current_user.role.role_name == 'ADMIN' %>
-          <li><h6 class="dropdown-header">━━━ ADMIN ━━━</h6></li>
+          <li>
+            <h6 class="dropdown-header">━━━ ADMIN ━━━</h6>
+          </li>
           <li><%= link_to 'All users', users_admin_index_path, class:"dropdown-item" %> </li>
           <li><%= link_to 'Add new user', new_users_admin_path, class:"dropdown-item" %> </li>
         <% end %>
