@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-md-3 border-right">
       <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <%= image_tag (user_image_tag(@user)), class: "profile-image mt-2 rounded-circle" %>
-        
+        <%= image_tag (@user.image if @user.image.attached?), class: "profile-image mt-2 rounded-circle" %>
         <span class="font-weight-bold">
           <%= @user.first_name + ' ' + @user.last_name %>
         </span>
@@ -15,7 +14,6 @@
         </span>
       </div>
     </div>
-      
     <div class="col-md-5 border-right">
       <div class="p-1 py-1">
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -26,7 +24,7 @@
           <% end %>
         </div>
         <div class="row mt-2">
-          <table>     
+          <table>
             <tr>
               <td>
                 Date of birth:
@@ -34,7 +32,7 @@
               <td>
                 <%= l @user.date_of_birth, format: '%_d. %B %Y.' %>
               </td>
-            </tr>     
+            </tr>
             <tr>
               <td>
                 Company:
@@ -42,16 +40,15 @@
               <td>
                 <%= @user.company.company_name %>
               </td>
-            </tr>  
+            </tr>
             <tr>
               <td>
                 Department:
               </td>
-
               <td>
                 <%= @user.department.department_name %>
               </td>
-            </tr>             
+            </tr>
             <% if current_user.role_id == 1 %> <!-- Only Admin can see Role! -->
               <tr>
                 <td>
@@ -60,7 +57,7 @@
                 <td>
                   <%= @user.role.role_name %>
                 </td>
-              </tr>       
+              </tr>
             <% end %>
             <tr>
               <td>
@@ -69,8 +66,7 @@
               <td>
                 <%= @user.office_phone %>
               </td>
-            </tr> 
-
+            </tr>
             <tr>
               <td>
                 Mobile phone:
@@ -78,23 +74,20 @@
               <td>
                 <%= @user.mobile_phone %>
               </td>
-            </tr> 
-
+            </tr>
             <tr>
               <td>
                 Private phone:
               </td>
-
               <td>
                 <%= @user.private_phone %>
               </td>
-            </tr> 
-          </table>          
+            </tr>
+          </table>
         </div>
       </div>
-        
       <div class="card-footer text-muted">
-        <%= link_to "Edit", edit_users_admin_path(@user), class: "btn btn-outline-secondary btn-sm" %> 
+        <%= link_to "Edit", edit_users_admin_path(@user), class: "btn btn-outline-secondary btn-sm" %>
         <%= link_to "Delete", users_admin_path(@user), method: :delete, data: {turbo_method: :delete, 
                                                                   turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm"  %>
       </div>

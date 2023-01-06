@@ -1,67 +1,29 @@
-<div class="card">
-  <h5 class="card-header">Users</h5>
-  <div class="card-body">
-    <div class="table-responsive py-5">
-        <table class="table table-hover table-sm table-bordered border-top-color">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First name</th>
-              <th scope="col">Last name</th>
-              <th scope="col">E-mail</th>
-              <th scope="col">Date of Birth</th>
-              <th scope="col">Company</th>
-              <th scope="col">Department</th>
-              <th scope="col">Role</th>
-              <th scope="col">Position</th>
-              <th scope="col">Office Phone</th>
-              <th scope="col">Mobile Phone</th>
-              <th scope="col">Private Phone</th>
-              <th scope="col" colspan="3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= user.id %></td>
-              <td><%= user.first_name %></td>
-              <td><%= user.last_name %></td>
-              <td><%= user.email %></td>
-              <td><%= l user.date_of_birth, format: '%_d. %B %Y.' %></td>
-              <td><%= user.company.company_name %></td>
-              <td><%= user.department.department_name %></td>
-              <td><%= user.role.role_name %></td>
-              <td><%= user.position %></td>
-              <td><%= user.office_phone %></td>
-              <td><%= user.mobile_phone %></td>
-              <td><%= user.private_phone %></td>
 
-              <td>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
-                  <ul class="dropdown-menu">
-                    <li><button class="dropdown-item" type="button"><%= link_to "Show", users_admin_path(user), class: 'text-secondary' %></button></li>
-                    <li><button class="dropdown-item" type="button"><%= link_to "Edit", edit_users_admin_path(user.id), class: 'text-secondary' %></button></li>
-                    <li><button class="dropdown-item" type="button"><%= link_to "Delete", users_admin_path(user), class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
-                                                                            turbo_confirm: 'Are you sure?'}  %></button></li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
+<div class="d-flex  justify-content-start flex-wrap">
+<% @users.each do |user| %>
+ <div class="col p-2">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <%= image_tag (user_image_tag(user)), class: "img-fluid rounded-start" %>
+        <div class="icon-container">
+          <%= turbo_stream_from "user_status" %>
+        </div>
+        <div>
+          <%= render "users/status", user: user %>
+        </div>
       </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= '('+ String(user.id) +') ' + user.first_name + ' ' + user.last_name %></h5>
+          <p class="card-text text-primary"><%= user.email %></p>
+          <p class="card-text"><small class="text-muted">Company: <%= user.company.company_name %></small></p>
+          <p class="card-text"><small class="text-muted">Department: <%= user.department.department_name %></small></p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="card-footer text-muted">
-    <!--TODO: User is signed in already so no new users can be created -->
-    <%= link_to "Create new user", new_users_admin_path, class: 'btn btn-outline-primary btn-sm' %>
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">View Phones </label>
-        <% if User.count == 1%>
-          <caption>There is: <%= User.count %> user</caption>
-        <% else %>
-          <caption>There are: <%= User.count %> users</caption>
-        <% end %>
   </div>
-</div>     
+<% end %>
+
+</div>
