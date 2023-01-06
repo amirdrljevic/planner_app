@@ -1,0 +1,14 @@
+en:
+  simple_form:
+    placeholders:
+      department:
+        department_name: Name of your department
+    labels:
+      department:
+        department_name: Name
+
+  helpers:
+    submit:
+      department:
+        create: Create department
+        update: Update department
