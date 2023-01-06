@@ -1,7 +1,12 @@
-<div id="<%= dom_id department %>">
-  <p>
-    <strong>Department name:</strong>
+  <div class="model-element">
     <%= department.department_name %>
-  </p>
-
-</div>
+    <div class="model-element__actions">
+      <%= button_to "Delete",
+                    department_path(department),
+                    method: :delete,
+                    class: "btn btn--light" %>
+      <%= link_to "Edit",
+                  edit_department_path(department),
+                  class: "btn btn--light" %>
+    </div>
+  </div>

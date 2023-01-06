@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :companies
   resources :roles
   root 'home#index'
-  resources :departments
+  resources :departments, except: [:show]
 
   # devise_scope :user do
   #   root to: "devise/sessions#new"
