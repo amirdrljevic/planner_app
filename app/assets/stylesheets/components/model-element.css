@@ -1,14 +1,18 @@
+@import "config/variables.css";
+
 .model-element {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
 
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 0.375rem;
-  box-shadow: 1px 3px 6px hsl(0 0% 0% / 0.1);
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  gap: var(--space-s);
+
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-small);
+  margin-bottom: var(--space-m);
+  
+  padding: var(--space-xs) var(--space-m);
 
 }
 
@@ -16,7 +20,7 @@
   display: flex;
   flex: 0 0 auto;
   align-self: flex-start;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .model-element-name {

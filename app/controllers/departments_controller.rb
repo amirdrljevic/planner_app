@@ -4,7 +4,7 @@ class DepartmentsController < ApplicationController
 
   # GET /departments or /departments.json
   def index
-    @departments = Department.all
+    @departments = Department.ordered
   end
 
   # GET /departments/new
@@ -20,37 +20,34 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
 
-    respond_to do |format|
-      if @department.save
-        format.html { redirect_to department_url(@department), notice: "Department was successfully created." }
-        format.json { render :show, status: :created, location: @department }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @department.errors, status: :unprocessable_entity }
+    if @department.save
+      respond_to do |format|
+        format.html { redirect_to departments_path, notice: "Department was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Quote was successfully created." }
       end
+    else
+      render :new, status: :unprocessable_entity 
     end
   end
 
   # PATCH/PUT /departments/1 or /departments/1.json
   def update
-    respond_to do |format|
-      if @department.update(department_params)
-        format.html { redirect_to department_url(@department), notice: "Department was successfully updated." }
-        format.json { render :show, status: :ok, location: @department }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @department.errors, status: :unprocessable_entity }
+    if @department.update(department_params)
+      respond_to do |format|
+        format.html { redirect_to departments_path, notice: "Department was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Department was successfully updated." }
       end
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /departments/1 or /departments/1.json
   def destroy
     @department.destroy
-
     respond_to do |format|
-      format.html { redirect_to departments_url, notice: "Department was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to departments_path, notice: "Quote was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Quote was successfully destroyed." }
     end
   end
 

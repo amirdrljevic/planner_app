@@ -1,72 +1,19 @@
+<%= turbo_stream_from "departments" %>
 <main class="container">
-  <%= turbo_frame_tag "first_turbo_frame" do %>
     <div class="header">
       <h1>Departments</h1>
       <%= link_to "Add department",
                   new_department_path,
-                  class: "btn btn--primary"#,
-                  #data: { turbo_frame: dom_id(Department.new) } 
+                  class: "btn btn--primary",
+                  data: { turbo_frame: dom_id(Department.new) } 
                   %>
     </div>
-  <% end %>
-  
-  
 
+    <%= turbo_frame_tag Department.new %>
 
-    <% # render "departments/empty_state" %>
-    <%= render @departments %>
-
+    <%= turbo_frame_tag "departments" do %>
+      <%= render "departments/empty_state" %>
+      <%= render @departments %>
+    <% end %>
 </main>
 
-
-
-
-
-<div class="card w-75 mx-auto">
-  <h5 class="card-header">Departments</h5>
-  <div class="card-body">
-    <div class="table-responsive">
-        <table class="table table-hover table-sm table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Department name</th>
-              <th scope="col" colspan="3">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @departments.each do |department| %>
-            <tr>
-              <td><%= department.id %></td>
-              <td><%= department.department_name %></td>
-              <td>
-                <div class="dropdown">
-                  <button class="btn btn-sm btn-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
-                  <ul class="dropdown-menu">
-                    <li><button class="dropdown-item" type="button"><%= link_to "Show", department, class: 'text-secondary' %></button></li>
-                    <li><button class="dropdown-item" type="button"><%= link_to "Edit", edit_department_path(department.id), class: 'text-secondary' %></button></li>
-                    <li><button class="dropdown-item" type="button"><%= link_to "Delete", department, class: 'text-danger', method: :delete, data: {turbo_method: :delete, 
-                                                                            turbo_confirm: 'Are you sure?'}  %></button></li>
-                  </ul>
-                </div>
-              </td>
-
-                  
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
-  </div>
-  <div class="card-footer text-muted">
-    <%= link_to "New department", new_department_path, class: 'btn btn-outline-primary btn-sm' %>
-        <% if Department.count == 1%>
-          <caption>There is: <%= Department.count %> department</caption>
-        <% else %>
-          <caption>There are: <%= Department.count %> departments</caption>
-        <% end %>
-  </div>
-</div>
-
-
-<%= render @departments%>
