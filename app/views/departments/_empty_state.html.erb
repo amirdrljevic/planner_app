@@ -1,0 +1,7 @@
+<div class="empty-state empty-state--only-child">
+  <p class="empty-state__text">
+    You don't have any departments yet!
+  </p>
+
+  <%= link_to "Add department", new_department_path, class: "btn btn--primary", data: { turbo_frame: dom_id(Department.new) } %>
+</div>

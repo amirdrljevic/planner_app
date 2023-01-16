@@ -1,12 +1,14 @@
-  <div class="model-element">
-    <%= department.department_name %>
-    <div class="model-element__actions">
-      <%= button_to "Delete",
-                    department_path(department),
-                    method: :delete,
+  <%= turbo_frame_tag department do %>
+    <div class="model-element">
+      <%= department.department_name %>
+      <div class="model-element__actions">
+        <%= button_to "Delete",
+                      department_path(department),
+                      method: :delete,
+                      class: "btn btn--light" %>
+        <%= link_to "Edit",
+                    edit_department_path(department),
                     class: "btn btn--light" %>
-      <%= link_to "Edit",
-                  edit_department_path(department),
-                  class: "btn btn--light" %>
+      </div>
     </div>
-  </div>
+  <% end %>

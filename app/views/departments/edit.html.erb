@@ -1,23 +1,12 @@
 <%= notice %>
-<div class="card w-75 mx-auto">
-  <h5 class="card-header">Edit department</h5>
-  <div class="card-body">
-    <%= render 'form', department: @department%>
-    <br>
-  </div>
-  <div class="card-footer text-muted">
-    <%= link_to "Show this department", @department,  class: "btn btn-outline-secondary btn-sm" %>
-    <%= link_to "Back to departments", departments_path, class: "btn btn-outline-secondary btn-sm"  %>
-  </div>
-</div>
-
-
 <main class="container">
-  <%= link_to sanitize("&larr; Back to quote"), quote_path(@quote) %>
+  <%= link_to sanitize("&larr; Back to departments"), departments_path %>
 
   <div class="header">
-    <h1>Edit quote</h1>
+    <h1>Edit department</h1>
   </div>
 
-  <%= render "form", quote: @quote %>
+  <%= turbo_frame_tag @department do %>
+    <%= render "form", department: @department %>
+  <% end %>
 </main>
