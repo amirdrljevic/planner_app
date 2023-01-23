@@ -1,6 +1,8 @@
 class DepartmentsController < ApplicationController
+  before_action :check_for_foreign_key_violation, only: [:destroy, :update]
   before_action :logged_in_user
   before_action :set_department, only: %i[ show edit update destroy ]
+
 
   # GET /departments or /departments.json
   def index
@@ -52,6 +54,17 @@ class DepartmentsController < ApplicationController
   end
 
   private
+    def check_for_foreign_key_violation
+      begin
+        department = Department.find(params[:id])
+        department.destroy
+      rescue ActiveRecord::InvalidForeignKey => e
+        flash.now[:alert] = "Cannot delete department, there are other records associated with this department."
+        redirect_to departments_path #, notice: "uuuuu"
+        #render 'check_for_foreign_key_violation.turbo_stream'
+      end
+    end  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_department
       @department = Department.find(params[:id])
