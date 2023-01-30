@@ -169,6 +169,7 @@ GEM
     nokogiri (1.13.10-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.0.1)
     pg (1.4.5)
     pg (1.4.5-x64-mingw-ucrt)
     public_suffix (5.0.1)
@@ -205,6 +206,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    ransack (3.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     regexp_parser (2.6.1)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -278,9 +283,11 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mini_magick (~> 4.11)
+  pagy (~> 6.0, >= 6.0.1)
   pg (~> 1.4, >= 1.4.2)
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
+  ransack (~> 3.2, >= 3.2.1)
   selenium-webdriver
   simple_form (~> 5.1)
   sprockets-rails

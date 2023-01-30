@@ -23,6 +23,8 @@ gem 'aws-sdk-s3', '~> 1.114'
 gem 'active_storage_validations', '~> 0.9.8'
 gem 'image_processing', '~> 1.12', '>= 1.12.2'
 gem 'mini_magick', '~> 4.11'
+gem 'pagy', '~> 6.0', '>= 6.0.1'
+gem 'ransack', '~> 3.2', '>= 3.2.1'
 
 group :development, :test do
   #gem "debug", platforms: %i[ mri mingw x64_mingw ]
