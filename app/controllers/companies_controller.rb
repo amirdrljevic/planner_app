@@ -5,7 +5,11 @@ class CompaniesController < ApplicationController
 
   # GET /companies or /companies.json
   def index
-    @companies = Company.all
+    @q = Company.ransack(params[:q])
+    set_default_sort
+    scope = @q.result(distinct: true)
+
+    @pagy, @companies = pagy(scope, items: 3)
   end
 
   # GET /companies/1 or /companies/1.json
@@ -60,6 +64,10 @@ class CompaniesController < ApplicationController
   end
 
   private
+    def set_default_sort
+      @q.sorts = "name asc" if @q.sorts.empty?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_company
       @company = Company.find(params[:id])
