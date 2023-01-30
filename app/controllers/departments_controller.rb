@@ -1,8 +1,6 @@
 class DepartmentsController < ApplicationController
-  before_action :check_for_foreign_key_violation, only: [:destroy, :update]
   before_action :logged_in_user
   before_action :set_department, only: %i[ show edit update destroy ]
-
 
   # GET /departments or /departments.json
   def index
@@ -44,27 +42,23 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  # DELETE /departments/1 or /departments/1.json
+  # DELETE /departments/1 or /departments/1.json can we try
   def destroy
-    @department.destroy
-    respond_to do |format|
-      format.html { redirect_to departments_path, notice: "Quote was successfully destroyed." }
-      format.turbo_stream { flash.now[:notice] = "Quote was successfully destroyed." }
+    begin
+      @department.destroy
+      respond_to do |format|
+        format.html { redirect_to departments_path, notice: "Quote was successfully destroyed." }
+        format.turbo_stream { flash.now[:notice] = "Quote was successfully destroyed." }
+      end
+    rescue ActiveRecord::InvalidForeignKey => e
+      respond_to do |format|
+        format.html { redirect_to departments_path, notice: "You cannot delete this department because it is used elsewhere." }
+        format.turbo_stream { flash.now[:notice] = "You cannot delete this department because it is used elsewhere." }
+      end
     end
   end
 
   private
-    def check_for_foreign_key_violation
-      begin
-        department = Department.find(params[:id])
-        department.destroy
-      rescue ActiveRecord::InvalidForeignKey => e
-        flash.now[:alert] = "Cannot delete department, there are other records associated with this department."
-        redirect_to departments_path #, notice: "uuuuu"
-        #render 'check_for_foreign_key_violation.turbo_stream'
-      end
-    end  
-
     # Use callbacks to share common setup or constraints between actions.
     def set_department
       @department = Department.find(params[:id])
