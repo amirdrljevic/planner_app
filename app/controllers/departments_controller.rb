@@ -47,8 +47,8 @@ class DepartmentsController < ApplicationController
     begin
       @department.destroy
       respond_to do |format|
-        format.html { redirect_to departments_path, notice: "Quote was successfully destroyed." }
-        format.turbo_stream { flash.now[:notice] = "Quote was successfully destroyed." }
+        format.html { redirect_to departments_path, notice: "Department was successfully destroyed." }
+        format.turbo_stream { flash.now[:notice] = "Department was successfully destroyed." }
       end
     rescue ActiveRecord::InvalidForeignKey => e
       respond_to do |format|

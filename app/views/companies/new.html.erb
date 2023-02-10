@@ -1,11 +1,12 @@
 <%= notice %>
-<div class="card w-75 mx-auto">
-  <h5 class="card-header">New company</h5>
-  <div class="card-body">
-    <%= render 'form', company: @company %>
-    <br>
+<main class="container">
+  <%= link_to sanitize("&larr; Back to departments"), companies_path %>
+
+  <div class="header">
+    <h1>New Company</h1>
   </div>
-  <div class="card-footer text-muted">
-    <%= link_to "Back to companies", companies_path, class: "btn btn-outline-secondary btn-sm"  %>
-  </div>
-</div>
+
+  <%= turbo_frame_tag @company do %>
+    <%= render "form", company: @company %>
+  <% end %>
+</main>

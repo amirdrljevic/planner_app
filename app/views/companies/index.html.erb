@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "companies" %>
+<%= turbo_stream_from "companies" %>
 <main class="container">
   <div class="header">
     <h1>Companies</h1>
@@ -8,25 +8,26 @@
                 data: { turbo_frame: dom_id(Company.new) } 
                 %>
   </div>
-  <div class="table-responsive">
-  <table class="table mb-0">
-    <thead>
-      <tr>
-        <th><%= sort_link(@q, :company_name) %></th>
-        <th><%= sort_link(@q, :street_address) %></th>
-        <th><%= sort_link(@q, :postal_code) %></th>
-        <th><%= sort_link(@q, :city) %></th>
-        <th><%= sort_link(@q, :country) %></th>
-        <th colspan= 2> Action</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <%= render @companies %>
-    </tbody>
-  </table>
-  </div>
+  <%= turbo_frame_tag Company.new %>
 
+    <div class="table-responsive">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :company_name) %></th>
+          <th><%= sort_link(@q, :street_address) %></th>
+          <th><%= sort_link(@q, :postal_code) %></th>
+          <th><%= sort_link(@q, :city) %></th>
+          <th><%= sort_link(@q, :country) %></th>
+          <th colspan= 2> Action</th>
+        </tr>
+      </thead>
+      <tbody id="companies_table">
+        <%= render @companies %>
+      </tbody>
+    </table>
+    </div>
 
   <%= raw pagy_nav(@pagy) %>
 </main>

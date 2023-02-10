@@ -55,11 +55,17 @@ class CompaniesController < ApplicationController
 
   # DELETE /companies/1 or /companies/1.json
   def destroy
-    @company.destroy
-
-    respond_to do |format|
-      format.html { redirect_to companies_url, notice: "Company was successfully destroyed." }
-      format.json { head :no_content }
+    begin
+      @company.destroy
+      respond_to do |format|
+        format.html { redirect_to companies_path, notice: "Company was successfully destroyed." }
+        format.turbo_stream { flash.now[:notice] = "Company was successfully destroyed." }
+      end
+    rescue ActiveRecord::InvalidForeignKey => e
+      respond_to do |format|
+        format.html { redirect_to companiess_path, notice: "You cannot delete this company because it is used elsewhere." }
+        format.turbo_stream { flash.now[:notice] = "You cannot delete this company because it is used elsewhere." }
+      end
     end
   end
 
