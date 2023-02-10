@@ -1,57 +1,23 @@
-<%= form_with(model: @company , local: true) do |f| %>
-      <%= render "home/error_msgs", model_name: @company %>
-      <table>
-        <tr>
-          <td> 
-            <%= f.label :company_name, "Company name:" %>       
-          </td>
-          <td>
-            <%= f.text_field :company_name, class: "form-control form-control-sm" %>
-          </td>          
-        </tr>
+<%= simple_form_for company, html: { class: "company form" } do |f| %>
+  <% if company.errors.any? %>
+    <div class="error-message">
+      <%= company.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+  <div class="row">
+    <%= f.input :company_name, input_html: { autofocus: true } %>
 
-        <tr>
-          <td>   
-            <%= f.label :street_address, "Street address:" %>     
-          </td>
-          <td>
-            <%= f.text_field :street_address, class: "form-control form-control-sm" %>
-          </td>          
-        </tr>
+    <%= f.input :street_address, input_html: { autofocus: true } %>
 
-        <tr>
-          <td>     
-            <%= f.label :postal_code, "Postal code:" %>   
-          </td>
-          <td>
-            <%= f.text_field :postal_code, class: "form-control form-control-sm" %>
-          </td>          
-        </tr>
+    <%= f.input :postal_code, input_html: { autofocus: true } %>
 
-        <tr>
-          <td>  
-            <%= f.label :city, "City:" %>      
-          </td>
-          <td>
-            <%= f.text_field :city, class: "form-control form-control-sm" %>
-          </td>          
-        </tr>                
+    <%= f.input :city, input_html: { autofocus: true } %>
 
-        <tr>
-          <td>   
-            <%= f.label :country, "Country :" %>     
-          </td>
-          <td>
-            <%= f.text_field :country, class: "form-control form-control-sm" %>
-          </td>          
-        </tr>                
+    <%= f.input :country, as: :string, input_html: { autofocus: true } %>
+  </div>
 
-        <tr>
-          <td>        
-          </td>
-          <td>
-            <%= f.submit "Save", class: "btn btn-outline-primary btn-sm" %>
-          </td>          
-        </tr>                
-      </table>        
-    <% end %>
+  <div>
+    <%= link_to "Cancel", companies_path, class: "btn btn--light" %>
+    <%= f.submit class: "btn btn--secondary" %>
+  </div>
+<% end %>

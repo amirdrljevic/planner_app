@@ -4,6 +4,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
+  margin-bottom: var(--space-m);
+  justify-content: flex-end; /* ovaj dio dodat zbog dugmadi na COmpany new formi da ih gurne desno */
 }
 
 .form__group {

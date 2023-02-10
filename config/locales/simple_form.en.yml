@@ -3,12 +3,27 @@ en:
     placeholders:
       department:
         department_name: Name of your department
+      company:
+        company_name: Name of your company
+        street_address: Street address
+        postal_code: Postal code
+        city: City
+        country: Country
     labels:
       department:
         department_name: Name
+      company:
+        company_name: Company name
+        street_address: Street address
+        postal_code: Postal code
+        city: City
+        country: Country
 
   helpers:
     submit:
       department:
         create: Create department
         update: Update department
+      company:
+        create: Create company
+        update: Update company  
