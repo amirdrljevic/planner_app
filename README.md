@@ -20,6 +20,12 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+  When starting on a new machine, after a fresh clone, the following lines need to be removed before running commands rails db:reset/migrate/create 
+  It throws errors. after running the commands, you can restore these lines:
+    #if server is offline it resets user status to offline
+    config.after_initialize do |_config|
+      User.update_all(status: User.statuses[:offline])
+    end
 
 * Instructions on how to rename branch
 
