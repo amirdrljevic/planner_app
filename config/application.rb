@@ -14,6 +14,9 @@ module PlannerApp
 
     #this is to keep uploaded files on meeting model after editing a meeting:
     config.active_storage.replace_on_assign_to_many = false
+    config.after_initialize do |_config|
+      User.update_all(status: User.statuses[:offline])
+    end
 
 
 
