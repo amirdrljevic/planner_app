@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'c25406e46d9e46aa7b2000f7ed38c3f4b97bf01219f9576535d947fbee6612a1ad7b7db9ba91f9af0c8a4fe9a2e77266b53dcbe0061fa7d8b948fc3bf4eac592'
+  # config.secret_key = 'b3d0c97e24e7595768fa85e62073ba03207321f06ee9ca5906677beded59ce56c9eb0a48d08ff620db482b91a7077fd5912a054a85c55676d6cf1c0071471e62'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '54bbd12e60fdf4dd52bdc56d18bbeef4ae20f214bfeb222db1c0148bc0e38c500e49b0c31e734b282e06134215c6d12f9c9f1f580deddf554764db75a970b167'
+  # config.pepper = '99458fbaa168bad2e68726741467a57db0faef7bde8da70bfdd1966d5fb71de579592394c3971e4efb539a0dbd64dcbcf8a31bac6cee9a489eb60d0a2f4b22be'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -256,14 +256,14 @@ Devise.setup do |config|
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
-  # :html, should redirect to the sign in page when the user does not have
+  # :html should redirect to the sign in page when the user does not have
   # access, but formats like :xml or :json, should return 401.
   #
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  # config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -296,42 +296,18 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  # ==> Turbolinks configuration
-  # If your app is using Turbolinks, Turbolinks::Controller needs to be included to make redirection work correctly:
-  #
-  # ActiveSupport.on_load(:devise_failure_app) do
-  #   include Turbolinks::Controller
-  # end
+  # ==> Hotwire/Turbo configuration
+  # When using Devise with Hotwire/Turbo, the http status for error responses
+  # and some redirects must match the following. The default in Devise for existing
+  # apps is `200 OK` and `302 Found respectively`, but new apps are generated with
+  # these new defaults that match Hotwire/Turbo behavior.
+  # Note: These might become the new default in future versions of Devise.
+  config.responder.error_status = :unprocessable_entity
+  config.responder.redirect_status = :see_other
 
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-  class TurboFailureApp < Devise::FailureApp
-    def respond
-      if request_format == :turbo_stream
-        redirect
-      else
-        super
-      end
-    end
-  
-    def skip_format?
-      %w(html turbo_stream */*).include? request_format.to_s
-    end
-  end
-  
-   Devise.setup do |config|
-    #...
-    # Configure the parent class to the custom controller.
-    config.parent_controller = 'TurboDeviseUserController'
-    config.navigational_formats = ['*/*', :html, :turbo_stream]
-  
-  
-    # Warden configuration
-    config.warden do |manager|
-      manager.failure_app = TurboFailureApp
-    end
-  end
 end
