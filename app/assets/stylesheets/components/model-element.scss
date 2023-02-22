@@ -14,15 +14,15 @@
   
   padding: var(--space-xs) var(--space-m);
 
-}
 
-.model-element__actions {
-  display: flex;
-  flex: 0 0 auto;
-  align-self: flex-start;
-  gap: var(--space-xs);
-}
 
+  &__actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-self: flex-start;
+    gap: var(--space-xs);
+  }
+}
 .model-element-name {
   text-decoration: none;
   color: #000000;

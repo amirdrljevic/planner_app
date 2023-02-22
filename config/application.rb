@@ -8,6 +8,12 @@ Bundler.require(*Rails.groups)
 
 module PlannerApp
   class Application < Rails::Application
+
+    config.assets.debug = true
+    config.assets.compile = true
+    config.assets.check_precompiled_asset = false
+    config.assets.precompile += %w( application.scss )
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.active_storage.variant_processor = :mini_magick
@@ -17,8 +23,6 @@ module PlannerApp
     config.after_initialize do |_config|
       User.update_all(status: User.statuses[:offline])
     end
-
-
 
     # Configuration for the application, engines, and railties goes here.
     #
