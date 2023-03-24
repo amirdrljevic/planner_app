@@ -1,39 +1,45 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Company name</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-  <!-- This should never happen as the header is visible only to signed in users, but we made it anyway -->
-  <% if user_signed_in? %>
-    <div class="dropdown mx-5">
-      <button class="btn btn-sm btn-transparent dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <div class="icon-container">
-          <%= image_tag (user_image_tag(current_user)), class: "rounded-circle header-image" %>
-          <%= turbo_stream_from "user_status" %>
-        </div>
-        <div>
-          <%= render "users/status", user: current_user %>
-        </div>
-        <%= current_user.first_name + ' ' + current_user.last_name  %>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end">
-        <li><%= link_to 'My profile', users_admin_path(current_user), class:"dropdown-item" %></li>
-        <li><%= link_to 'Edit profile', edit_users_admin_path(current_user), class:"dropdown-item" %> </li>
-        <% if current_user.role.role_name == 'ADMIN' %>
-          <li>
-            <h6 class="dropdown-header">━━━ ADMIN ━━━</h6>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+  <div class="container-fluid d-flex justify-content-between px-5">
+    <a class="navbar-brand" href="#">PlannerApp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="d-flex justify-content-between w-100">
+        <form class="custom-search" role="search">
+          <input class="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn--search" type="submit">
+            <%= show_icon('search')%>
+          </button>
+        </form>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="icon-container me-2">
+                <%= image_tag (user_image_tag(current_user)), class: "rounded-circle header-image" %>
+                <%= turbo_stream_from "user_status" %>
+              </div>
+              <span class="d-none d-lg-inline">
+                <%= current_user.first_name + ' ' + current_user.last_name %>
+                <%= render "users/status", user: current_user %>
+              </span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><%= link_to 'My profile', users_admin_path(current_user), class:"dropdown-item" %></li>
+              <li><%= link_to 'Edit profile', edit_users_admin_path(current_user), class:"dropdown-item" %></li>
+              <% if current_user.role.role_name == 'ADMIN' %>
+                <li>
+                  <h6 class="dropdown-header">━━━ ADMIN ━━━</h6>
+                </li>
+                <li><%= link_to 'All users', users_admin_index_path, class:"dropdown-item" %> </li>
+                <li><%= link_to 'Add new user', new_users_admin_path, class:"dropdown-item" %> </li>
+              <% end %>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger"  %></li>
+            </ul>
           </li>
-          <li><%= link_to 'All users', users_admin_index_path, class:"dropdown-item" %> </li>
-          <li><%= link_to 'Add new user', new_users_admin_path, class:"dropdown-item" %> </li>
-        <% end %>
-        <li><hr class="dropdown-divider"></li>
-        <li><% link_to "Sign out", destroy_user_session_path,data: { turbo_method: :delete}, class: "dropdown-item text-danger" %></li>
-        <!-- link_to doesn't give us the proper signed out message. Button_to does.  -->
-        <li><%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger"  %></li>
-      </ul>
+        </ul>
+      </div>
     </div>
-  <% else %>
-    <%= link_to "Sign in", new_user_session_path, class: "nav-link px-3" %>
-  <% end %>
-</header>
+  </div>
+</nav>

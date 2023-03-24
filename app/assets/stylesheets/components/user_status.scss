@@ -1,0 +1,17 @@
+/* Status circle */
+.icon-container {
+    width: 50px;
+    height: 50;
+    position: relative;
+}
+
+.status-circle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: grey;
+    border: 2px solid white;
+    bottom: 7px;
+    left: 40px;
+}

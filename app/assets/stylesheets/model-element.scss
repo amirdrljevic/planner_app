@@ -1,5 +1,3 @@
-@import "config/variables.css";
-
 .model-element {
   display: flex;
   justify-content: space-between;
@@ -11,10 +9,8 @@
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-small);
   margin-bottom: var(--space-m);
-  
+
   padding: var(--space-xs) var(--space-m);
-
-
 
   &__actions {
     display: flex;

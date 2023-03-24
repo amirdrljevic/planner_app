@@ -1,19 +1,16 @@
 <%= turbo_stream_from "departments" %>
 <main class="container">
-    <div class="header">
-      <h1>Departments</h1>
-      <%= link_to "Add department",
+  <div class="index-header">
+    <h1>Departments</h1>
+    <%= link_to "Add department",
                   new_department_path,
                   class: "btn btn--primary",
                   data: { turbo_frame: dom_id(Department.new) } 
                   %>
-    </div>
-
-    <%= turbo_frame_tag Department.new %>
-
-    <%= turbo_frame_tag "departments" do %>
-      <%= render "departments/empty_state" %>
-      <%= render @departments %>
-    <% end %>
+  </div>
+  <%= turbo_frame_tag Department.new %>
+  <%= turbo_frame_tag "departments" do %>
+    <%= render "departments/empty_state" %>
+    <%= render @departments %>
+  <% end %>
 </main>
-

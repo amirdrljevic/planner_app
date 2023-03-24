@@ -1,7 +1,5 @@
-@import "config/variables.css";
-
 .flash {
-  position:fixed;
+  position: fixed;
   top: 5rem;
   left: 50%;
   transform: translateX(-50%);
@@ -14,6 +12,7 @@
   max-width: 100%;
   width: max-content;
   padding: 0 var(--space-m);
+  z-index: 9999;
 }
 .flash__message {
   font-size: var(--font-size-s);
