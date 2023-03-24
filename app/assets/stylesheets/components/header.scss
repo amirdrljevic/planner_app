@@ -1,8 +1,6 @@
-@import "config/variables.css";
-header {
-  background-color: blue;
-}
-.header {
+//This is Header on Index pages (title + button)
+
+.index-header {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-s);

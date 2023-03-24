@@ -5,7 +5,7 @@ default: &default
   #Added username and password, without information couldnt run "rails s"
   username: postgres
   password: mostar
-  # password: 123
+  #password: 123
 
 development:
   <<: *default

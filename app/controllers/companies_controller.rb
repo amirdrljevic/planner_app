@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
     set_default_sort
     scope = @q.result(distinct: true)
 
-    @pagy, @companies = pagy(scope, items: 3)
+    @pagy, @companies = pagy(scope, items: 10)
   end
 
   # GET /companies/1 or /companies/1.json
