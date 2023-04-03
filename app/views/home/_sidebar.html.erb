@@ -1,43 +1,79 @@
 <!-- Sidebar -->
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-  <div class="position-sticky pt-3 sidebar-sticky">
-    <button id="sidebarCollapse" class="btn btn-outline-primary mb-2">Collapse</button>
-    <ul class="nav nav-pills flex-column">
-      <li class="nav-item">
-        <%= link_to departments_path, class: 'nav-link align-items-center d-flex' do %>
-          <%= show_icon('dots') %>
-          <span class="nav-text ms-2">Departments</span>
-        <% end %>
+<nav class="sidebar">
+  <header>
+    <div class="image-text">
+      <span class="image">
+        <img src="https://img.freepik.com/free-icon/google_318-278809.jpg" alt="profile">
+      </span>
+      <div class="text header-text">
+        <span class="app-name">PlannerApp</span>
+        <span class="message">Hello user!</span>
+      </div>
+    </div>
+    <i class='bx bx-chevron-right toggle'></i>
+  </header>
+  <div class="menu-bar">
+    <div class="menu">
+      <li class="search-box">
+        <i class='bx bx-search icon' ></i>
+        <input type="text" placeholder="Search...">
       </li>
-      <li class="nav-item">
-        <%= link_to companies_path, class: 'nav-link align-items-center d-flex' do %>
-          <%= show_icon('dots') %>
-          <span class="nav-text ms-2">Companies</span>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to meetings_path, class: 'nav-link align-items-center d-flex' do %>
-          <%= show_icon('dots') %>
-          <span class="nav-text ms-2">Meetings</span>
-        <% end %>
-      </li>
-    </ul>
-    <% if current_user.role.role_name == 'ADMIN' %>
-      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-        <span class="text-secondary">ADMIN</span>
-        <a class="link-secondary" href="#" aria-label="Add a new report">
-          <%= show_icon('search') %>
-        </a>
-      </h6>
-      <ul class="nav nav-pills flex-column mb-2">
-        <li class="nav-item">
-          <%= link_to roles_path, class: 'nav-link align-items-center d-flex' do %>
-            <%= show_icon('dots') %>
-            <span class="nav-text ms-2">Roles</span>
+      <ul class="menu-links">
+        <li class="nav-link">
+          <a href="#">
+            <i class='bx bx-home-alt icon' ></i>
+            <span class="text nav-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <%= link_to departments_path, class: 'nav-link align-items-center d-flex' do %>
+            <i class='bx bx-hive icon'></i>
+            <span class="text nav-text">Departments</span>
           <% end %>
         </li>
+        <li class="nav-link">
+          <%= link_to companies_path, class: 'nav-link align-items-center d-flex' do %>
+            <i class='bx bx-hive icon'></i>
+            <span class="text nav-text">Companies</span>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to meetings_path, class: 'nav-link align-items-center d-flex' do %>
+            <i class='bx bx-hive icon'></i>
+            <span class="text nav-text">Meetings</span>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to roles_path, class: 'nav-link align-items-center d-flex' do %>
+            <i class='bx bx-hive icon'></i>
+            <span class="text nav-text">Roles</span>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <a href="#">
+            <i class='bx bx-wallet icon' ></i>
+            <span class="text nav-text">Wallet</span>
+          </a>
+        </li>
       </ul>
-    <% end %>
+    </div>
+    <div class="bottom-content">
+      <li class="">
+        <a href="#">
+          <i class='bx bx-log-out icon' ></i>
+          <span class="text nav-text">Log out</span>
+        </a>
+      </li>
+      <li class="mode">
+        <div class="moon-sun">
+          <i class='bx bx-moon icon moon' ></i>
+          <i class='bx bx-sun icon sun'></i>
+        </div>
+        <span class="mode-text text">Dark Mode</span>
+        <div class="toggle-switch">
+          <span class="switch"></span>
+        </div>
+      </li>
+    </div>
   </div>
 </nav>
-<!-- -->

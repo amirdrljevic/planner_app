@@ -2,18 +2,16 @@
 <html>
   <%= render 'layouts/head' %>
   <body>
-    <main class="main">
-      <% if user_signed_in? %>
-        <%= turbo_frame_tag "appearance_channel"%>
-        <div id="appearance_channel"></div>
+    <% if user_signed_in? %>
+      <%= turbo_frame_tag "appearance_channel"%>
+      <div id="appearance_channel"></div>
+      <%= render 'home/sidebar' %>
+      <section class="home">
         <%= render 'home/header' %>
-        <div class="content-wrapper">
-          <%= render 'home/sidebar' %>
-          <%= render 'home/body' %>
-        </div>
-      <% else %>
-        <%= yield %>
-      <% end %>
-    </main>
+        <%= render 'home/body' %>
+      </section>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

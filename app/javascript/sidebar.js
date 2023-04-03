@@ -1,9 +1,20 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const sidebarMenu = document.getElementById("sidebarMenu");
-    const collapseButton = document.getElementById("sidebarCollapse");
-  
-    collapseButton.addEventListener("click", function() {
-      sidebarMenu.classList.toggle("collapsed-sidebar");
+const body = document.querySelector('body'),
+    sidebar = document.querySelector('.sidebar'),
+    toggle = document.querySelector('.toggle'),
+    searchBtn = document.querySelector('.search-box'),
+    modeSwitch = document.querySelector('.toggle-switch'),
+    modeText = document.querySelector('.mode-text');
+
+    toggle.addEventListener('click', () => {
+        sidebar.classList.toggle("close");
     });
-  });
-  
+
+    modeSwitch.addEventListener('click', () => {
+        body.classList.toggle("dark");
+
+        if (body.classList.contains("dark")) {
+            modeText.innerHTML = "Light Mode";
+        } else {
+            modeText.innerHTML = "Dark Mode";
+        }
+    });
