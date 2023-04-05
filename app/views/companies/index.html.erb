@@ -1,6 +1,6 @@
 <%= turbo_stream_from "companies" %>
 <main class="container">
-  <div class="header">
+  <div class="index-header">
     <h1>Companies</h1>
     <%= link_to "Add company",
                 new_company_path,
@@ -8,10 +8,8 @@
                 data: { turbo_frame: dom_id(Company.new) } 
                 %>
   </div>
-
   <%= turbo_frame_tag Company.new %>
-
-    <div class="table-responsive">
+  <div class="table-responsive">
     <table class="table mb-0">
       <thead>
         <tr>
@@ -27,7 +25,6 @@
         <%= render @companies %>
       </tbody>
     </table>
-    </div>
-
+  </div>
   <%= raw pagy_nav(@pagy) %>
 </main>

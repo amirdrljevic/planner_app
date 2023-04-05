@@ -23,7 +23,7 @@ class DepartmentsController < ApplicationController
     if @department.save
       respond_to do |format|
         format.html { redirect_to departments_path, notice: "Department was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Quote was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Department was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity 
