@@ -1,27 +1,50 @@
-<%= simple_form_for company, html: { class: 'company form', data: { turbo_action: 'replace', turbo_frame: dom_id(company) } } do |f| %>
-  <% if company.errors.any? %>
-    <div class="error-message">
-      <%= company.errors.full_messages.to_sentence.capitalize %>
+<% if company.persisted? %>
+  <div class="divTableRow edit-company-row">
+    <%= simple_form_for company, html: { class: 'company form', data: { turbo_frame: dom_id(company) } } do |f| %>
+      <% if company.errors.any? %>
+        <div class="error-message">
+          <%= company.errors.full_messages.to_sentence.capitalize %>
+        </div>
+      <% end %>
+      <div class="input"><%= f.input :company_name, input_html: { autofocus: true } %></div>
+      <div class="input"><%= f.input :street_address, input_html: { autofocus: true } %></div>
+      <div class="input"><%= f.input :postal_code, input_html: { autofocus: true } %></div>
+      <div class="input"><%= f.input :city, input_html: { autofocus: true } %></div>
+      <div class="input"><%= f.input :country, as: :string, input_html: { autofocus: true } %></div>
+      <%= link_to companies_path, class: "btn btn--company-cancel" do %>
+        <%= show_icon('cancel') %>
+      <% end %>
+      <%= button_tag type: :submit, class: "btn btn--company-submit" do %>
+        <%= show_icon('submit') %>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <%= simple_form_for company, html: { class: 'company form', data: { turbo_frame: dom_id(company) } } do |f| %>
+    <% if company.errors.any? %>
+      <div class="error-message">
+        <%= company.errors.full_messages.to_sentence.capitalize %>
+      </div>
+    <% end %>
+    <div class="row">
+      <table>
+        <th><%= f.label :company_name %></th>
+        <th><%= f.label :street_address %></th>
+        <th><%= f.label :postal_code %></th>
+        <th><%= f.label :city %></th>
+        <th><%= f.label :country %></th>
+        <tr>
+          <td><%= f.input :company_name, input_html: { autofocus: true } %></td>
+          <td><%= f.input :street_address, input_html: { autofocus: true } %></td>
+          <td><%= f.input :postal_code, input_html: { autofocus: true } %></td>
+          <td><%= f.input :city, input_html: { autofocus: true } %></td>
+          <td><%= f.input :country, as: :string, input_html: { autofocus: true } %></td>
+        </tr>
+      </table>
+      <div>
+        <%= link_to "Cancel", companies_path, class: "btn btn--secondary" %>
+        <%= f.submit class: "btn btn--primary" %>
+      </div>
     </div>
   <% end %>
-  <div class="row">
-    <table>
-      <th><%= f.label :company_name %></th>
-      <th><%= f.label :street_address %></th>
-      <th><%= f.label :postal_code %></th>
-      <th><%= f.label :city %></th>
-      <th><%= f.label :country %></th>
-      <tr>
-        <td><%= f.input :company_name, input_html: { autofocus: true } %></td>
-        <td><%= f.input :street_address, input_html: { autofocus: true } %></td>
-        <td><%= f.input :postal_code, input_html: { autofocus: true } %></td>
-        <td><%= f.input :city, input_html: { autofocus: true } %></td>
-        <td><%= f.input :country, as: :string, input_html: { autofocus: true } %></td>
-      </tr>
-    </table>
-  </div>
-  <div>
-    <%= link_to "Cancel", companies_path, class: "btn btn--secondary" %>
-    <%= f.submit class: "btn btn--primary" %>
-  </div>
 <% end %>

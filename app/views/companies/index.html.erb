@@ -9,22 +9,22 @@
                 %>
   </div>
   <%= turbo_frame_tag Company.new %>
-  <div class="table-responsive">
-    <table class="table mb-0">
-      <thead>
-        <tr>
-          <th><%= sort_link(@q, :company_name) %></th>
-          <th><%= sort_link(@q, :street_address) %></th>
-          <th><%= sort_link(@q, :postal_code) %></th>
-          <th><%= sort_link(@q, :city) %></th>
-          <th><%= sort_link(@q, :country) %></th>
-          <th colspan= 2> Action</th>
-        </tr>
-      </thead>
-      <tbody id="companies_table">
+  <%= turbo_frame_tag "companies" do %>
+    <div class="divTable">
+      <div class="divTableHeading">
+        <div class="divTableRow">
+          <div class="divTableHead"><%= sort_link(@q, :company_name) %></div>
+          <div class="divTableHead"><%= sort_link(@q, :street_address) %></div>
+          <div class="divTableHead"><%= sort_link(@q, :postal_code) %></div>
+          <div class="divTableHead"><%= sort_link(@q, :city) %></div>
+          <div class="divTableHead"><%= sort_link(@q, :country) %></div>
+          <div class="divTableHead">Action</div>
+        </div>
+      </div>
+      <div class="divTableBody" id="companies_table">
         <%= render @companies %>
-      </tbody>
-    </table>
-  </div>
+      </div>
+    </div>
+  <% end %>
   <%= raw pagy_nav(@pagy) %>
 </main>

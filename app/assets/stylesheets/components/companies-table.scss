@@ -1,0 +1,85 @@
+.divTable {
+  display: table;
+  width: 100%;
+}
+.divTableHeading {
+  display: table-header-group;
+  font-weight: bold;
+}
+.divTableBody {
+  display: table-row-group;
+}
+.divTableRow {
+  display: table-row;
+}
+.divTableHead, .divTableCell {
+  display: table-cell;
+  padding: 8px;
+}
+.divTableHead {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+.btn-container {
+  display: flex;
+  align-items: center;
+}
+.btn-container .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px; /* Adjust the spacing between the buttons as needed */
+}
+.divTableBody > turbo-frame {
+  display: contents;
+}
+
+.company.form {
+  display: flex;
+  width: 100%;
+}
+
+.company.form .input {
+  flex-grow: 1;
+}
+
+.company.form .input:nth-child(n+2) {
+  margin-left: 8px;
+}
+
+/*ff */
+.divTableRow {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.divTableHead, .divTableCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.company.form {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: nowrap;
+}
+
+.company.form .input {
+  flex-grow: 1;
+}
+
+
+.edit-company-row{
+  background-color: beige;
+  box-shadow: 3px 5px 5px 0px rgba(100,96,96,0.30);
+-webkit-box-shadow: 3px 5px 5px 0px rgba(100,96,96,0.30);
+-moz-box-shadow: 3px 5px 5px 0px rgba(100,96,96,0.30);
+  border-radius: 4px;
+  padding: 7px;
+}
+
+.divTableRow.edit-company-row form{
+  margin-bottom: 0px !important;
+}

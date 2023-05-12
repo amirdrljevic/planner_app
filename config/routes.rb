@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #resources :users, only: [:index, :show] #leave it for now, but it will probably go
   resources :users_admin, :controller => "users" 
   #get 'home/index'
-  resources :companies
+  resources :companies, except: [:show]
   resources :roles
   root 'home#index'
   resources :departments, except: [:show]
