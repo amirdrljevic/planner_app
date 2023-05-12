@@ -10,4 +10,5 @@ class Company < ApplicationRecord
   # TODO: if user deletes a company, it shouldn't be available if that company_id is being used in users table
   # a message should pop up
 
+  broadcasts_to ->(company) { "companies" }, inserts_by: :prepend
 end

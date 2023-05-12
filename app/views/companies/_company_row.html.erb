@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "company-#{company.id}" do %>
+  <div id="company-<%= company.id %>" class="divTableRow">
+    <div class="divTableCell"><%= company.company_name %></div>
+    <div class="divTableCell"><%= company.street_address %></div>
+    <div class="divTableCell"><%= company.postal_code %></div>
+    <div class="divTableCell"><%= company.city %></div>
+    <div class="divTableCell"><%= company.country %></div>
+    <div class="divTableCell btn-container">
+      <%= link_to edit_company_path(company), class: "btn btn--edit", data: { turbo_frame: dom_id(company) } do %>
+        <%= show_icon('edit') %>
+      <% end %>
+      <%= button_to company_path(company), method: :delete, class: "btn btn--delete" do %>
+        <%= show_icon('delete') %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+ovo ovdje... kada se klikne update.. pojavi se edit forma, ali kada se klikne update ona ne nestane i ne refresha... to treba dodati u turbo stream

@@ -4,7 +4,6 @@
       <%= department.errors.full_messages.to_sentence.capitalize %>
     </div>
   <% end %>
-
   <%= f.input :department_name, input_html: { autofocus: true } %>
   <%= link_to "Cancel", departments_path, class: "btn btn--light" %>
   <%= f.submit class: "btn btn--secondary" %>

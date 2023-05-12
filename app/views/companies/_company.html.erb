@@ -1,17 +1,17 @@
-<%= content_tag :tr, id: dom_id(company) do %>
-  <td><%= company.company_name %></td>
-  <td><%= company.street_address %></td>
-  <td><%= company.postal_code %></td>
-  <td><%= company.city %></td>
-  <td><%= company.country %></td>
-  <td>
-    <%= link_to edit_company_path(company), class: "btn btn--edit" do %>
-      <%= show_icon('edit') %>
-    <% end %>
-  </td>
-  <td>
-    <%= button_to company_path(company), method: :delete, class: "btn btn--delete" do %>
-      <%= show_icon('delete') %>
-    <% end %>
-  </td>
+  <%= turbo_frame_tag company do %>
+  <div class="divTableRow">
+    <div class="divTableCell"><%= company.company_name %></div>
+    <div class="divTableCell"><%= company.street_address %></div>
+    <div class="divTableCell"><%= company.postal_code %></div>
+    <div class="divTableCell"><%= company.city %></div>
+    <div class="divTableCell"><%= company.country %></div>
+    <div class="divTableCell btn-container">
+      <%= link_to edit_company_path(company), class: "btn btn--edit" do %>
+        <%= show_icon('edit') %>
+      <% end %>
+      <%= button_to company_path(company), method: :delete, class: "btn btn--delete" do %>
+        <%= show_icon('delete') %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
